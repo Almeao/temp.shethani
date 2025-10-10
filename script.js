@@ -1,0 +1,212 @@
+// Ensure the page always starts at the top on reload or refresh
+window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+};
+
+
+var lodder = gsap.timeline();
+
+
+
+const Loader = document.querySelector('.lodder span'); // ensure this selector matches your DOM
+const counter = { val: 0 };
+
+lodder.to(counter, {
+    val: 100,
+    
+    duration: 6,
+    ease: "power4.out",
+    onUpdate: () => {
+        gsap.to(Loader, {
+            stagger:0.6,
+            // ease: "power4.out",
+            
+            duration:4,
+        });
+        
+        if (Loader) Loader.innerHTML = Math.floor(counter.val) ;
+        gsap.set(".lodder_progress", { width: counter.val + "%" });
+    },
+   
+},"lodder_progress"
+);
+
+lodder.to(".lodder_progress img", {
+    opacity:0,
+    duration:1,
+    ease: "power2.inOut",
+},"lodder_span_and_progress_image_hind"
+)
+lodder.to(".lodder span",{
+    y:30,
+    opacity:0,
+    duration:1,
+    ease: "power2.inOut",
+},"lodder_span_and_progress_image_hind"
+)
+
+
+
+
+
+
+// Step 1: Animate background from white to transparent left to right
+lodder.to(".lodder_progress", {
+    background: "linear-gradient(to right, white 0%, transparent 100%)",
+    duration: 0.5,
+    ease: "power2.inOut",
+    onStart: () => {
+        // Ensure initial background is white
+        gsap.set(".lodder_progress", { background: "white" });
+    }
+})
+
+// Step 2: Animate background to solid white left to right
+lodder.to(".lodder_progress", {
+    background: "linear-gradient(to right, white 100%, white 100%)",
+    duration: 0.5,
+    ease: "power2.inOut",
+})
+
+
+
+// Step 3: Animate background from white to transparent left to right again
+lodder.to(".lodder_progress", {
+    background: "linear-gradient(to right, transparent 0%, white 100%)",
+    duration: 1,
+    opacity:0,
+    x:"100%",
+    ease: "power2.inOut",
+},"lodder_logo&hr&progress_at sametime"
+)
+
+lodder.to(".lodder_logo", {
+    y: "-350%",
+    scale:0.5,
+    duration: 1,
+    ease: "power2.inOut",
+},"lodder_logo&hr&progress_at sametime"
+)
+lodder.to(".lodder", {
+    opacity:0,
+    duration:1,
+    ease: "power2.inOut",
+});
+lodder.to(".lodder", {
+    display: "none"
+});
+
+lodder.from(".nav_main_logo",{
+    y:"-100%",
+    scale:0.7,
+    duration:1,
+    ease: "power2.inOut",
+})
+
+
+
+
+
+lodder.from(".nav_option hr",{
+    x:-100,
+    opacity:0,
+    scrub:5,
+    stagger:0.2,
+    ease: "bounce.out",
+},
+)
+
+
+lodder.from(".page1_bg_text",{
+    opacity:0,
+    scale:30,
+ 
+    duration:1,
+    ease: "power2.inOut",
+
+}
+)
+
+
+
+
+lodder.to(".page1_bg_text",{
+    lineHeight: "11vmax",
+    duration:1,
+    scrub:5,
+    ease: "elastic.out(1,1)",
+})
+
+lodder.from(".page1_containe_oil-img_left",{
+    x:"-100%",
+    duration:2,
+    ease: "power4.inOut",
+
+},"page1_contain"
+)
+lodder.from(".page1_containe_oil-img_right",{
+    x:"100%",
+    duration:2,
+    ease: "power4.inOut",
+
+},"page1_contain")
+
+
+
+
+lodder.from(".page1_contain_oil-img_container img",{
+    rotate:"90deg",
+
+    y:"-90%",
+    x:200,
+    scale:1.3,
+    duration:1.5,
+    ease: "power2.inOut",
+
+},"page1_contain")
+
+
+const page1_imagescroller = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".page1",
+        scroller: "body",
+        start: "top top",
+        end: "top -40%",
+        scrub: 3,
+        stagger: 0.2,
+        markers: true, 
+        // pin:true,
+       
+        onLeave: () => {
+            gsap.to(
+                ".page1_contain_2_left_img_oil img", 
+                { scale: 1, duration: 0.6, ease: "back.out(1.7)" }
+            );
+            gsap.to(
+                ".page1_contain_2_left_img_pinuts img", 
+                { scale: 1, duration: 0.6, delay: 0.2, ease: "back.out(1.7)" }
+            );
+        },
+        onLeaveBack: () => {
+            gsap.to(
+                ".page1_contain_2_left_img2", 
+                { scale: 0, duration: 0.6, scrub:5,ease: "power4.out" }
+            );
+            gsap.to(
+                ".page1_contain_2_left_img3", 
+                { scale: 0, duration: 0.6,scrub:5
+                    , ease: "power4.out" }
+            );
+        }
+    }
+})
+page1_imagescroller.to(".page1_contain_oil-img_container img", 
+
+    {
+
+    y: "1500",
+    x: "-50%",
+    rotate: "10deg",
+    scale:1,
+   
+});
