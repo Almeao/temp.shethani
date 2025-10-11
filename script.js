@@ -166,47 +166,141 @@ lodder.from(".page1_contain_oil-img_container img",{
 },"page1_contain")
 
 
+
+
+
+
+
 const page1_imagescroller = gsap.timeline({
     scrollTrigger: {
-        trigger: ".page1",
+        trigger: ".page1_contain_oil-img_container",
         scroller: "body",
-        start: "top top",
-        end: "top -40%",
-        scrub: 3,
-        stagger: 0.2,
+        start: "top -10%",
+        end: "top -80%",
+        scrub: 1,
+      
         markers: true, 
         // pin:true,
        
         onLeave: () => {
             gsap.to(
                 ".page1_contain_2_left_img_oil img", 
-                { scale: 1, duration: 0.6, ease: "back.out(1.7)" }
+                { scale: 1, duration: 1, ease: "back.out(1.7)" }
             );
             gsap.to(
                 ".page1_contain_2_left_img_pinuts img", 
-                { scale: 1, duration: 0.6, delay: 0.2, ease: "back.out(1.7)" }
+                { scale: 1, duration: 1, delay: 0.2, ease: "back.out(1.7)" }
             );
         },
         onLeaveBack: () => {
             gsap.to(
-                ".page1_contain_2_left_img2", 
-                { scale: 0, duration: 0.6, scrub:5,ease: "power4.out" }
+                ".page1_contain_2_left_img_oil img", 
+                { scale: 0, duration: 1, scrub:5,ease: "power4.out" }
             );
             gsap.to(
-                ".page1_contain_2_left_img3", 
+                ".page1_contain_2_left_img_pinuts img", 
                 { scale: 0, duration: 0.6,scrub:5
                     , ease: "power4.out" }
             );
         }
     }
 })
-page1_imagescroller.to(".page1_contain_oil-img_container img", 
+page1_imagescroller.to(".page1_contain_oil-img_container", 
 
     {
 
-    y: "1500",
-    x: "-50%",
+    y: "160%",
+    x: "-75%",
+    stagger: 0.3,
     rotate: "10deg",
-    scale:1,
+    scale:1.3,
    
 });
+
+
+
+
+
+
+
+
+document.querySelectorAll('.page2 h3').forEach(function(h3) {
+    // Get the text content and trim it
+    var text = h3.textContent;
+    // Create a new HTML string with each character wrapped in a span
+    var spanned = '';
+    for (var i = 0; i < text.length; i++) {
+        // Preserve spaces
+        if (text[i] === ' ') {
+            spanned += '<span>&nbsp;</span>';
+        } else {
+            spanned += '<span class:"page2_heading_divide">' + text[i] + '</span>';
+        }
+    }
+    // Set the new HTML
+    h3.innerHTML = spanned;
+});
+
+gsap.from(".page2  h3 span",
+    {
+        opacity: 0,
+        y: 100,
+        x:20,
+        stagger: 0.6,
+        scale:0,
+        duration: 50,
+        ease: "bounce.out",
+        scrollTrigger: {
+            trigger: ".page2 h3",
+            start: "top 50%",
+            end:"top top",
+            scrub: 3,
+            // markers: true, // Uncomment for debugging
+
+        }
+    
+        
+    })
+    
+gsap.from(".page2_contain_part_box",
+    {
+        height: 0,
+        duration: 5,
+        stagger: 0.2,
+        scrollTrigger: {
+            trigger: ".page2 h3",
+            start: "top 50%",
+            end: "top -10%",
+            scrub: 3,
+            // markers: true, // Uncomment for debugging
+        }
+    }
+)
+
+
+
+
+
+gsap.to(".scroller_1", {
+    x: "-100%",
+    duration: 10,
+    repeat: -1,
+    ease:"linear",
+    // yoyo: true,
+   
+
+});
+
+
+
+gsap.to(".scroller_2", {
+    x: "-10%",
+    duration: 20,
+    repeat: -1,
+    ease:"linear",
+    // yoyo: true,
+  
+
+});
+
+
