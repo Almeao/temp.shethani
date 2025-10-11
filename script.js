@@ -226,8 +226,8 @@ gsap.from(".page1_contain_2_left_img_oil", {
     ease: "none",
     scrollTrigger: {
         trigger: ".page1_contain_2",
-        start: "top 20%",
-        end: "top 10%",
+        start: "top 30%",
+        end: "top 25%",
         // markers: true,
         // pin:true,
         scrub: 3, // This makes the animation reverse on scroll up
@@ -241,8 +241,8 @@ gsap.from(".page1_contain_2_left_img_pinuts", {
     delay:1,
     scrollTrigger: {
         trigger: ".page1_contain_2",
-        start: "top 10%",
-        end: "top top",
+        start: "top 35%",
+        end: "top 30%",
         // markers: true,
         scrub: 3, // This makes the animation reverse on scroll up
     }
