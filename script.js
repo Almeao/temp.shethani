@@ -175,27 +175,27 @@ const page1_imagescroller = gsap.timeline({
     scrollTrigger: {
         trigger: ".page1_contain_oil-img_container",
         scroller: "body",
-        start: "top -10%",
-        end: "top -80%",
+        start: "top -20%",
+        end: "top -150%",
         scrub: 1,
       
-        markers: true, 
+        // markers: true, 
         // pin:true,
        
         onLeave: () => {
             gsap.to(
                 ".page1_contain_2_left_img_oil img", 
-                { scale: 1, duration: 1, ease: "back.out(1.7)" }
+                { scale: 1, duration: 2, ease: "back.out(1.7)" }
             );
             gsap.to(
                 ".page1_contain_2_left_img_pinuts img", 
-                { scale: 1, duration: 1, delay: 0.2, ease: "back.out(1.7)" }
+                { scale: 1, duration: 2, delay: 1, ease: "back.out(1.7)" }
             );
         },
         onLeaveBack: () => {
             gsap.to(
                 ".page1_contain_2_left_img_oil img", 
-                { scale: 0, duration: 1, scrub:5,ease: "power4.out" }
+                { scale: 0, duration: 0.6, scrub:5,ease: "power4.out" }
             );
             gsap.to(
                 ".page1_contain_2_left_img_pinuts img", 
