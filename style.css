@@ -152,6 +152,7 @@ html, body {
 {
     width: 100vw;
     min-height: 230vh;
+    max-height: 280vh;
     position: relative;
     /* background-color: #FFD105; */
 
