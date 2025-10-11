@@ -176,33 +176,33 @@ const page1_imagescroller = gsap.timeline({
         trigger: ".page1_contain_oil-img_container",
         scroller: "body",
         start: "top -20%",
-        end: "top -150%",
-        scrub: 1,
+        end: "top -110%",
+        scrub: 2,
       
         // markers: true, 
         // pin:true,
        
-        onLeave: () => {
-            gsap.to(
-                ".page1_contain_2_left_img_oil img", 
-                { scale: 1, duration: 2, ease: "back.out(1.7)" }
-            );
-            gsap.to(
-                ".page1_contain_2_left_img_pinuts img", 
-                { scale: 1, duration: 2, delay: 1, ease: "back.out(1.7)" }
-            );
-        },
-        onLeaveBack: () => {
-            gsap.to(
-                ".page1_contain_2_left_img_oil img", 
-                { scale: 0, duration: 0.6, scrub:5,ease: "power4.out" }
-            );
-            gsap.to(
-                ".page1_contain_2_left_img_pinuts img", 
-                { scale: 0, duration: 0.6,scrub:5
-                    , ease: "power4.out" }
-            );
-        }
+        // onComplite: () => {
+        //     gsap.to(
+        //         ".page1_contain_2_left_img_oil img", 
+        //         { scale: 1, duration: 2, ease: "back.out(1.7)" }
+        //     );
+        //     gsap.to(
+        //         ".page1_contain_2_left_img_pinuts img", 
+        //         { scale: 1, duration: 2, delay: 2, ease: "back.out(1.7)" }
+        //     );
+        // },
+        // onLeaveBack: () => {
+        //     gsap.to(
+        //         ".page1_contain_2_left_img_oil img", 
+        //         { scale: 0, duration: 0.6, scrub:5,ease: "power4.out" }
+        //     );
+        //     gsap.to(
+        //         ".page1_contain_2_left_img_pinuts img", 
+        //         { scale: 0, duration: 0.6,scrub:5
+        //             , ease: "power4.out" }
+        //     );
+        // }
     }
 })
 page1_imagescroller.to(".page1_contain_oil-img_container", 
@@ -218,6 +218,35 @@ page1_imagescroller.to(".page1_contain_oil-img_container",
 });
 
 
+
+
+gsap.from(".page1_contain_2_left_img_oil", {
+    scale: 0,
+    duration: 10,
+    ease: "none",
+    scrollTrigger: {
+        trigger: ".page1_contain_2",
+        start: "top 20%",
+        end: "top 10%",
+        markers: true,
+        // pin:true,
+        scrub: 3, // This makes the animation reverse on scroll up
+    }
+});
+
+gsap.from(".page1_contain_2_left_img_pinuts", {
+    scale: 0,
+    duration: 10,
+    ease: "none",
+    delay:1,
+    scrollTrigger: {
+        trigger: ".page1_contain_2",
+        start: "top 10%",
+        end: "top top",
+        markers: true,
+        scrub: 3, // This makes the animation reverse on scroll up
+    }
+});
 
 
 
