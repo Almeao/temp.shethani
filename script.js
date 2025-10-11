@@ -228,7 +228,7 @@ gsap.from(".page1_contain_2_left_img_oil", {
         trigger: ".page1_contain_2",
         start: "top 20%",
         end: "top 10%",
-        markers: true,
+        // markers: true,
         // pin:true,
         scrub: 3, // This makes the animation reverse on scroll up
     }
@@ -243,7 +243,7 @@ gsap.from(".page1_contain_2_left_img_pinuts", {
         trigger: ".page1_contain_2",
         start: "top 10%",
         end: "top top",
-        markers: true,
+        // markers: true,
         scrub: 3, // This makes the animation reverse on scroll up
     }
 });
