@@ -1,4 +1,6 @@
 // Ensure the page always starts at the top on reload or refresh
+
+
 window.onbeforeunload = function () {
     window.scrollTo(0, 0);
 };
@@ -176,8 +178,9 @@ const page1_imagescroller = gsap.timeline({
         trigger: ".page1_contain_oil-img_container",
         scroller: "body",
         start: "top -20%",
-        end: "top -110%",
-        scrub: 2,
+        end: "top -140%",
+        scrub: 1,
+        markers:true,
       
         // markers: true, 
         // pin:true,
@@ -211,9 +214,10 @@ page1_imagescroller.to(".page1_contain_oil-img_container",
 
     y: "160%",
     x: "-75%",
-    stagger: 0.3,
+    stagger: 0.2,
     rotate: "10deg",
     scale:1.3,
+    pin:true,
    
 });
 
@@ -291,45 +295,45 @@ gsap.from(".page2  h3 span",
         
     })
     
-gsap.from(".page2_contain_part_box",
-    {
-        height: 0,
-        duration: 5,
-        stagger: 0.2,
-        scrollTrigger: {
-            trigger: ".page2 h3",
-            start: "top 50%",
-            end: "top -10%",
-            scrub: 3,
-            // markers: true, // Uncomment for debugging
-        }
-    }
-)
+// gsap.from(".page2_contain_part_box",
+//     {
+//         height: 0,
+//         duration: 5,
+//         stagger: 0.2,
+//         scrollTrigger: {
+//             trigger: ".page2 h3",
+//             start: "top 50%",
+//             end: "top -10%",
+//             scrub: 3,
+//             // markers: true, // Uncomment for debugging
+//         }
+//     }
+// )
 
 
 
 
 
-gsap.to(".scroller_1", {
-    x: "-100%",
-    duration: 10,
-    repeat: -1,
-    ease:"linear",
-    // yoyo: true,
+// gsap.to(".scroller_1", {
+//     x: "-100%",
+//     duration: 10,
+//     repeat: -1,
+//     ease:"linear",
+//     // yoyo: true,
    
 
-});
+// });
 
 
 
-gsap.to(".scroller_2", {
-    x: "-10%",
-    duration: 20,
-    repeat: -1,
-    ease:"linear",
-    // yoyo: true,
+// gsap.to(".scroller_2", {
+//     x: "-10%",
+//     duration: 20,
+//     repeat: -1,
+//     ease:"linear",
+//     // yoyo: true,
   
 
-});
+// });
 
 
