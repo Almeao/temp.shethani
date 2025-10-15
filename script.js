@@ -1,9 +1,15 @@
-// Ensure the page always starts at the top on reload or refresh
 
 
-window.onbeforeunload = function () {
-    window.scrollTo(0, 0);
-};
+
+ 
+
+
+
+
+
+
+
+
 
 
 var lodder = gsap.timeline();
@@ -293,47 +299,60 @@ gsap.from(".page2  h3 span",
         }
     
         
-    })
+})
     
-// gsap.from(".page2_contain_part_box",
-//     {
-//         height: 0,
-//         duration: 5,
-//         stagger: 0.2,
-//         scrollTrigger: {
-//             trigger: ".page2 h3",
-//             start: "top 50%",
-//             end: "top -10%",
-//             scrub: 3,
-//             // markers: true, // Uncomment for debugging
-//         }
-//     }
-// )
 
 
+gsap.registerPlugin(ScrollTrigger);
 
+function initHorizontalScroll() {
+  const section = document.querySelector(".page3");
+  const container = document.querySelector(".page3_contain");
 
+  // Clean up any previous triggers or transforms
+  ScrollTrigger.getAll().forEach(trigger => {
+    if (trigger.trigger === section) trigger.kill();
+  });
+  gsap.set(container, { clearProps: "transform" });
 
-// gsap.to(".scroller_1", {
-//     x: "-100%",
-//     duration: 10,
-//     repeat: -1,
-//     ease:"linear",
-//     // yoyo: true,
-   
+  // Calculate scroll distance
+  const totalScroll = container.scrollWidth - window.innerWidth;
 
-// });
+  // Create animation
+  gsap.to(container, {
+    x: () => -totalScroll,
+    ease: "none",
+    scrollTrigger: {
+      trigger: section,
+      start: "top top",
+      end: () => "+=" + totalScroll,
+      scrub: 1,
+      pin: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      fastScrollEnd: true,
+      preventOverlaps: true,
+      // markers: true,
+      onEnter: () => console.log("Entered horizontal scroll"),
+      onLeave: () => console.log("Left horizontal scroll"),
+    },
+  });
 
+  // Recalculate scroll distance when refreshed
+  ScrollTrigger.refresh();
+}
 
+// Wait for page load before init (important if you have loaders or images)
+window.addEventListener("load", () => {
+  initHorizontalScroll();
+});
 
-// gsap.to(".scroller_2", {
-//     x: "-10%",
-//     duration: 20,
-//     repeat: -1,
-//     ease:"linear",
-//     // yoyo: true,
-  
-
-// });
-
-
+// Handle resizing safely
+let resizeTimeout;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
+    ScrollTrigger.refresh(true);
+    initHorizontalScroll();
+  }, 300);
+});

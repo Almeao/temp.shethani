@@ -12,12 +12,12 @@
 {
     margin: 0;
     padding: 0;
-
+    /* overflow-x: hidden; */
 }
 
 html, body {
     height: 100%;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
 }
 .lodder
 {
@@ -156,6 +156,7 @@ html, body {
     /* height: 250vh; */
     /* max-height: 280vh; */
     position: relative;
+    /* overflow-x: hidden; */
     /* background-color: #FFD105; */
 
 }
@@ -625,38 +626,252 @@ html, body {
 
 
 
+.page3 {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+}
 
-.page3
-{
-    height: 100vh;
-    width: 100vh;
+.page3_contain {
+  display: flex;
+  height: 100vh;
+  width: 400vw; /* 4 panels wide */
+  background: linear-gradient(135deg, #FFD105 0%, #F8981C 100%);
 }
-.page3_contain
-{
-    height: 100vh;
-    min-width: 100vw;
-    display: flex;
-    background: linear-gradient(135deg, #FFD105 0%, #F8981C 100%);
+
+.panel {
+  flex: 0 0 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'font-1';
+  /* background-color: transparent; */
+  color: #ffffff;
+  overflow: hidden;
 }
-.page3_contain_part1
+
+
+.panel1
 {
-    width: 90vw;
-    height: 100vh;
-    font-family: 'font-1';
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-size: 15em;
     text-align: center;
-    color: white;
+    font-weight: 900;
 }
-.page3_contain_part1 p
+
+.panel2_left
 {
-    font-size: 12em;
-  
+    width: 50vw;
+    height: 100vh;
+    /* background-color: aquamarine; */
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
 }
-.page3_contain_part2
+.panel2_right
+{
+     width: 50vw;
+    height: 100vh;
+    /* background-color: rgb(3, 33, 59); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    /* text-align: justify; */
+}
+
+.panel2_right h3
+{
+    font-size: 7em;
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+
+.panel2_right p
+{
+    font-size: 2em;
+    font-weight: 100;
+    /* text-align:; */
+    line-height: 1em;
+
+}
+.panel2_right p:nth-child(3)
+{
+    word-spacing: 1.8vmax;
+}
+.panel2_right p:nth-child(4)
+{
+    word-spacing: 1.3vmax;
+}
+.panel2_right p:nth-child(5)
+{
+    word-spacing: 0.8vmax;
+}
+.panel2_right p:nth-child(6)
+{
+    word-spacing: 3.3vmax;
+}
+.panel2_right p:nth-child(7)
+{
+    word-spacing: 2.4vmax;
+}
+
+
+
+
+
+.panel3_left
+{
+    width: 50vw;
+    height: 100vh;
+    /* background-color: aquamarine; */
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+}
+.panel3_left img
+{
+    width: 100%;
+    height: 100%;
+    scale: 1.2;
+    object-fit: contain;
+}
+.panel3_right
+{
+     width: 50vw;
+    height: 100vh;
+    /* background-color: rgb(3, 33, 59); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    /* text-align: justify; */
+}
+
+.panel3_right h3
+{
+    font-size: 7em;
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+
+.panel3_right p
+{
+    font-size: 2em;
+    font-weight: 100;
+    /* text-align:; */
+    line-height: 1em;
+
+}
+.panel3_right p:nth-child(3)
+{
+    word-spacing: 1.8vmax;
+}
+.panel3_right p:nth-child(4)
+{
+    word-spacing: 1.3vmax;
+}
+.panel3_right p:nth-child(5)
+{
+    word-spacing: 0.8vmax;
+}
+.panel3_right p:nth-child(6)
+{
+    word-spacing: 3.3vmax;
+}
+.panel3_right p:nth-child(7)
+{
+    word-spacing: 2.4vmax;
+}
+
+
+
+
+
+
+
+
+.panel4_left
+{
+    width: 50vw;
+    height: 100vh;
+    /* background-color: aquamarine; */
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.panel4_left img
+{
+    width: 80%;
+    height: 80%;
+    /* scale: 1.2; */
+    object-fit: contain;
+}
+.panel4_right
+{
+     width: 50vw;
+    height: 100vh;
+    /* background-color: rgb(3, 33, 59); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    /* text-align: justify; */
+}
+
+.panel4_right h3
+{
+    font-size: 7em;
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+
+.panel4_right p
+{
+    font-size: 2em;
+    font-weight: 100;
+    /* text-align:; */
+    line-height: 1em;
+
+}
+.panel4_right p:nth-child(3)
+{
+    word-spacing: 1.8vmax;
+}
+.panel4_right p:nth-child(4)
+{
+    word-spacing: 1.3vmax;
+}
+.panel4_right p:nth-child(5)
+{
+    word-spacing: 0.8vmax;
+}
+.panel4_right p:nth-child(6)
+{
+    word-spacing: 3.3vmax;
+}
+.panel4_right p:nth-child(7)
+{
+    word-spacing: 2.4vmax;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.page4
 {
     width: 100vw;
     height: 100vh;
-    background-color:yellowgreen;
+    background-color: aquamarine;
 }
