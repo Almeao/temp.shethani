@@ -323,6 +323,118 @@ gsap.from(".page2  h3 span",
 })
     
 
+gsap.from(".box1",{
+    opacity:0,
+    x:-300,
+    scrollTrigger:
+    {
+        trigger:".page2_contain",
+        start:"top 50%",
+        end:"top 20%",
+        scrub:true,
+        ease:"power4.out",
+        
+    }
+})
+
+
+gsap.from(".box2",{
+    opacity:0,
+    y:-200,
+    scrollTrigger:
+    {
+        trigger:".page2_contain",
+        start:"top 50%",
+        end:"top 20%",
+        scrub:true,
+        ease:"power4.out",
+
+    }
+})
+
+gsap.from(".box3",{
+    opacity:0,
+    x:300,
+    scrollTrigger:
+    {
+        trigger:".page2_contain",
+        start:"top 50%",
+        end:"top 20%",
+        scrub:true,
+        ease:"power4.out",
+
+    }
+})
+gsap.from(".box4",{
+    opacity:0,
+    x:-300,
+    delay:0.5,
+    scrollTrigger:
+    {
+        trigger:".page2_contain",
+        start:"top 50%",
+        end:"top 20%",
+        scrub:true,
+        ease:"power4.out",
+
+    }
+})
+
+
+
+
+gsap.from(".box5",{
+    opacity:0,
+    y:300,
+    delay:0.7,
+    scrollTrigger:
+    {
+        trigger:".page2_contain",
+        start:"top 40%",
+        end:"top 10%",
+        scrub:true,
+        ease:"power4.out",
+
+    }
+})
+
+gsap.from(".box6",{
+    opacity:0,
+    y:300,
+    delay:0.9,
+    scrollTrigger:
+    {
+        trigger:".page2_contain",
+        start:"top 40%",
+        end:"top 10%",
+        scrub:true,
+        ease:"power4.out",
+
+    }
+})
+gsap.from(".box7",{
+    opacity:0,
+    x:300,
+    delay:0.9,
+    scrollTrigger:
+    {
+        trigger:".page2_contain",
+        start:"top 40%",
+        end:"top 10%",
+        scrub:true,
+        ease:"power4.out",
+
+    }
+})
+
+
+
+
+
+
+
+
+
 gsap.registerPlugin(ScrollTrigger);
 
 function initHorizontalScroll() {
@@ -337,7 +449,7 @@ function initHorizontalScroll() {
 
   // Calculate horizontal scroll distance
   const totalScroll = container.scrollWidth - window.innerWidth;
-  const limitedScroll = totalScroll * 0.5;
+//   const limitedScroll = totalScroll * 0.5;
 
   // Create fresh ScrollTrigger horizontal animation
   gsap.to(container, {
@@ -346,7 +458,7 @@ function initHorizontalScroll() {
     scrollTrigger: {
       trigger: section,
       start: "top top",
-      end: () => "+=" + limitedScroll,
+      end: () => "+=" + totalScroll,
       scrub: 0.1, // Changed from 1 to 0.1 for more reactive update (fixes slow scroll choppiness)
       pin: true,
       anticipatePin: 1,
@@ -438,6 +550,7 @@ function initPage4MaskAnimation() {
       end: '+=120%',
       scrub: 2,
       pin: true,
+      ease:"power4.out",
       anticipatePin: 1,
       invalidateOnRefresh: true,
       // markers: true, // Uncomment to debug
