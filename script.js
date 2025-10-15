@@ -330,40 +330,42 @@ function initHorizontalScroll() {
   const section = document.querySelector(".page3");
   const container = document.querySelector(".page3_contain");
 
-  // Clean up any previous triggers or transforms
+  // Remove existing triggers for this section to ensure fresh setup
   ScrollTrigger.getAll().forEach(trigger => {
     if (trigger.trigger === section) trigger.kill();
   });
   gsap.set(container, { clearProps: "transform" });
 
-  // Calculate scroll distance
+  // Calculate horizontal scroll distance
   const totalScroll = container.scrollWidth - window.innerWidth;
+  // We want only about 50% of the full scroll (as per user prompt)
+  const limitedScroll = totalScroll * 0.5;
 
-  // Create animation
+  // GSAP Animation: only scroll the first ~50% of the total possible scroll distance, then stop
   gsap.to(container, {
     x: () => -totalScroll,
     ease: "none",
     scrollTrigger: {
       trigger: section,
       start: "top top",
-      end: () => "+=" + totalScroll,
+      // The scroll distance is only 50% of what would normally be used
+      end: () => "+=" + limitedScroll,
       scrub: 1,
       pin: true,
       anticipatePin: 1,
       invalidateOnRefresh: true,
       fastScrollEnd: true,
       preventOverlaps: true,
-      // markers: true,
+      // markers: true, // Uncomment for debugging
       onEnter: () => console.log("Entered horizontal scroll"),
-      onLeave: () => console.log("Left horizontal scroll"),
+      onLeave: () => console.log("Left horizontal scroll (stops at 50%)"),
     },
   });
 
-  // Recalculate scroll distance when refreshed
+  // Refresh ScrollTrigger for responsiveness
   ScrollTrigger.refresh();
 }
 
-// Wait for page load before init (important if you have loaders or images)
 window.addEventListener("load", () => {
   initHorizontalScroll();
 });
