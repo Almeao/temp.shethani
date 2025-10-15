@@ -323,7 +323,6 @@ gsap.from(".page2  h3 span",
 })
     
 
-
 gsap.registerPlugin(ScrollTrigger);
 
 function initHorizontalScroll() {
@@ -338,37 +337,61 @@ function initHorizontalScroll() {
 
   // Calculate horizontal scroll distance
   const totalScroll = container.scrollWidth - window.innerWidth;
-  // We want only about 50% of the full scroll (as per user prompt)
   const limitedScroll = totalScroll * 0.5;
 
-  // GSAP Animation: only scroll the first ~50% of the total possible scroll distance, then stop
+  // Create fresh ScrollTrigger horizontal animation
   gsap.to(container, {
     x: () => -totalScroll,
     ease: "none",
     scrollTrigger: {
       trigger: section,
       start: "top top",
-      // The scroll distance is only 50% of what would normally be used
       end: () => "+=" + limitedScroll,
-      scrub: 1,
+      scrub: 0.1, // Changed from 1 to 0.1 for more reactive update (fixes slow scroll choppiness)
       pin: true,
       anticipatePin: 1,
       invalidateOnRefresh: true,
-      fastScrollEnd: true,
+      fastScrollEnd: false, // Set to false to let GSAP track both fast and slow scrolls accurately
       preventOverlaps: true,
-      // markers: true, // Uncomment for debugging
+      // markers: true,
       onEnter: () => console.log("Entered horizontal scroll"),
       onLeave: () => console.log("Left horizontal scroll (stops at 50%)"),
-    },
+      refreshPriority: 1
+    }
   });
 
-  // Refresh ScrollTrigger for responsiveness
+  // For improved smoothness: throttle ScrollTrigger.refresh() calls and force update on scroll as a backup
   ScrollTrigger.refresh();
+
+  // Fix laggy animation if user scrolls extremely slowly:
+  // Listen for scroll and update GSAP transform instantly if needed.
+  let ticking = false;
+  window.addEventListener("scroll", function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        ScrollTrigger.update();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
 }
 
 window.addEventListener("load", () => {
   initHorizontalScroll();
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Handle resizing safely
 let resizeTimeout;
