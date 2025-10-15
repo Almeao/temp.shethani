@@ -1,7 +1,28 @@
+// Initialize Lenis for smooth scrolling
+const lenis = new Lenis({
+  lerp: 0.1, // Adjust for smoothness (0.04 - 0.2 is typical)
+  smooth: true,
+  direction: 'vertical',
+  gestureDirection: 'vertical',
+  mouseMultiplier: 1,
+  touchMultiplier: 2,
+  infinite: false,
+});
+
+// Animation frame loop for Lenis + GSAP ScrollTrigger
+function raf(time) {
+  lenis.raf(time);
+  ScrollTrigger.update();
+  requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+
+// Optional: update ScrollTrigger on Lenis scroll
+lenis.on('scroll', ScrollTrigger.update);
 
 
 
- 
+
 
 
 
@@ -356,3 +377,54 @@ window.addEventListener("resize", () => {
     initHorizontalScroll();
   }, 300);
 });
+
+// Animate the mask size on page4 as we scroll through it
+// Fix GSAP animation to trigger correctly when .page4 reaches top
+
+function initPage4MaskAnimation() {
+  const page4 = document.querySelector('.page4');
+
+  if (!page4) return;
+
+  // Prevent double initialization
+  if (page4.dataset.maskAnimInit === '1') return;
+  page4.dataset.maskAnimInit = '1';
+
+  // Initial mask size height (matches initial CSS)
+  const initialMaskHeight = 460;
+  // Final mask size height (increase, but not overly drastic)
+  // For a visible but more modest mask reveal, pick a value that's noticeably larger, but not extreme
+  const finalMaskHeight = 500; // was 1800, now more subtle
+
+  // Set initial mask size using GSAP
+  gsap.set(page4, {
+    WebkitMaskSize: `auto ${initialMaskHeight}px`,
+    maskSize: `auto ${initialMaskHeight}px`,
+  });
+
+  // Animate only the mask height as you scroll through .page4
+  gsap.to(page4, {
+    WebkitMaskSize: () => `auto ${finalMaskHeight}vw`,
+    maskSize: () => `auto ${finalMaskHeight}px`,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: page4,
+      start: 'top top',
+      end: '+=120%',
+      scrub: 2,
+      pin: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      // markers: true, // Uncomment to debug
+    }
+  });
+
+  // Optional: Refresh ScrollTrigger for accurate pinning
+  ScrollTrigger.refresh();
+}
+
+// Call it on DOM ready/page load
+window.addEventListener('load', () => {
+  initPage4MaskAnimation();
+});
+

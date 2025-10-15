@@ -446,7 +446,7 @@ html, body {
 {
     position: relative;
     width: 100vw;
-    height: 180vh;
+    height: 170vh;
     /* margin-top: 15%; */
     /* background-color: aquamarine; */
     display: flex;
@@ -559,7 +559,7 @@ html, body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #FEF6EF;
+    /* background-color: #9f5c21; */
     position: relative;
     overflow: hidden;
 }
@@ -605,7 +605,7 @@ html, body {
     justify-content: center;
     padding: 15px 25px;
     border-radius: 999px;
-    font-family: 'font-2';
+    font-family: 'font-1';
     font-size: 20px;
     color: #2b1108;
     background: #fff;
@@ -620,7 +620,7 @@ html, body {
 .badge-orange { background: #FFD105; color: #ffffff; }
 .badge-red { background: #E41E26; color: #ffffff; }
 .badge-cream { background: #F8981C; color: #ffffff; }
-.badge-rust { background: #FFD105; color: #ffffff; }
+/* .badge-rust { background: #FFD105; color: #ffffff; } */
 
 
 
@@ -631,6 +631,7 @@ html, body {
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
+  /* margin-top: 50%; */
 }
 
 .page3_contain {
@@ -873,5 +874,32 @@ html, body {
 {
     width: 100vw;
     height: 100vh;
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
+    background-image: url(Rectangle\ 68.png);
+    background-size: cover;
+    /* background: transparent; */
+    /* opacity: 0.8; */
+    background-repeat: no-repeat;
+    position: relative;
+   
+    mask-image: url('SHETHANI-UPDATED-JAR-TRANSPARENT 4.png');
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center center;
+    mask-position: center center;
+    -webkit-mask-size: auto 460px; /* initial bottle height */
+    mask-size: auto 460px;
+    -webkit-mask-origin: content-box;
+    mask-origin: content-box;
+    
+    /* background-color: #000000; */
+    /* background-color: #fff; */
+}
+
+
+.page5
+{
+    width: 100vw;
+    height: 100vh;
+    /* background-color: ; */
 }
