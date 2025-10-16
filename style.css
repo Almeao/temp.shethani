@@ -458,7 +458,7 @@ html, body {
 .page2 h3
 {
     text-align: center;
-    font-family: "font-2";
+    font-family: "font-1";
     font-size: 5em;
     line-height: 70px;
     color: #F8981C;
@@ -915,7 +915,7 @@ html, body {
 .page5 h3
 {
     text-align: center;
-    font-family: "font-2";
+    font-family: "font-1";
     font-size: 5em;
     line-height: 70px;
     color: #F8981C;
@@ -931,6 +931,43 @@ html, body {
     gap:1%;
     /* background-color: #E41E26; */
 }
+
+/* .swiper-slide
+{
+    display: flex;
+}
+
+
+
+.mySwiper
+{
+    height: 60vh;
+}
+ */
+
+
+
+
+
+.swiper-pagination {
+    position: relative !important;
+    bottom: 0 !important;
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+    z-index: 10;
+}
+.swiper-pagination-bullet {
+    background: #ffb45277 !important;
+    opacity: 1 !important;
+}
+.swiper-pagination-bullet-active {
+    background: #000000 !important;
+}
+
+
+
+
 .page5_box1
 {
     flex: 1;
@@ -944,6 +981,11 @@ html, body {
     align-items: center;
     background: linear-gradient(135deg, #FFD105 0%, #F8981C 100%);
 }
+
+
+
+
+
 .page5_box1_img {
     width: 100%;
     height: 50%;
@@ -1002,7 +1044,7 @@ html, body {
     font-weight: 100;
     font-size: 1.2em;
 }
-.page5_box1_detail p:nth-child(5)
+/* .page5_box1_detail p:nth-child(5)
 {
     word-spacing: 1vw;
 }
@@ -1017,7 +1059,7 @@ html, body {
 .page5_box1_detail p:nth-child(8)
 {
     word-spacing: 1.9vw;
-}
+} */
 /* .page5_box1_detail p:nth-child(9)
 {
     word-spacing: 1.4vw;
@@ -1071,7 +1113,7 @@ html, body {
     font-family: 'font-2';
     justify-content: space-around;
     /* padding: 0 1% 0 1%; */
-
+    font-weight: 100;
     /* align-items: end; */
     /* background-color: #E41E26; */
 }

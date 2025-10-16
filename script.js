@@ -662,3 +662,24 @@ gsap.from(".page5_box1",
     
         
 })
+
+var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    loop: true, // Enable unlimited looping
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    autoplay: {
+      delay: 3000, // Auto-scroll every 3 seconds
+      disableOnInteraction: false,
+    },
+    speed: 700, // Duration of slide transition in ms (make smoother)
+    effect: 'slide', // Default slide effect
+    // For additional easing, you can use CSS! But Swiper's JS uses 'ease-in-out' by default.
+    // If you want custom CSS easing, you can add this to your CSS file:
+    // .swiper-wrapper {
+    //   transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+    // }
+});
