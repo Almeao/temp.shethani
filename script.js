@@ -33,6 +33,8 @@ lenis.on('scroll', ScrollTrigger.update);
 
 
 
+
+
 var lodder = gsap.timeline();
 
 
@@ -193,6 +195,37 @@ lodder.from(".page1_contain_oil-img_container img",{
     ease: "power2.inOut",
 
 },"page1_contain")
+
+
+let lastScrollY = window.scrollY;
+const nav = document.querySelector('.nav');
+let ticking = false;
+
+function handleNavOnScroll() {
+    const currentScrollY = window.scrollY;
+    if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        nav.style.transform = 'translateY(-100%)';
+        nav.style.transition = 'transform 0.5s cubic-bezier(0.77,0,0.18,1)';
+        // nav_main_logo.style.transform = 'scale(0)';
+    } else {
+        nav.style.transform = 'translateY(0)';
+        nav.style.transition = 'transform 0.5s cubic-bezier(0.77,0,0.18,1)';
+        // nav_main_logo.style.transform = 'scale(1)';
+    }
+    lastScrollY = currentScrollY;
+    ticking = false;
+}
+
+window.addEventListener('scroll', function() {
+    if (!ticking) {
+        window.requestAnimationFrame(handleNavOnScroll);
+        ticking = true;
+    }
+});
+
+
+
+
 
 
 
@@ -368,11 +401,11 @@ gsap.from(".box3",{
 gsap.from(".box4",{
     opacity:0,
     x:-300,
-    delay:0.5,
+    delay:2,
     scrollTrigger:
     {
         trigger:".page2_contain",
-        start:"top 50%",
+        start:"top 40%",
         end:"top 20%",
         scrub:true,
         ease:"power4.out",
@@ -566,3 +599,66 @@ window.addEventListener('load', () => {
   initPage4MaskAnimation();
 });
 
+
+
+
+
+
+
+document.querySelectorAll('.page5 h3').forEach(function(h3) {
+    // Get the text content and trim it
+    var text = h3.textContent;
+    // Create a new HTML string with each character wrapped in a span
+    var spanned = '';
+    for (var i = 0; i < text.length; i++) {
+        // Preserve spaces
+        if (text[i] === ' ') {
+            spanned += '<span>&nbsp;</span>';
+        } else {
+            spanned += '<span class:"page2_heading_divide">' + text[i] + '</span>';
+        }
+    }
+    // Set the new HTML
+    h3.innerHTML = spanned;
+});
+
+gsap.from(".page5  h3 span",
+    {
+        opacity: 0,
+        y: 100,
+        x:20,
+        stagger: 0.6,
+        scale:0,
+        duration: 50,
+        ease: "bounce.out",
+        scrollTrigger: {
+            trigger: ".page5 h3",
+            start: "top 50%",
+            end:"top top",
+            scrub: 3,
+            // markers: true, // Uncomment for debugging
+
+        }
+    
+        
+})
+gsap.from(".page5_box1",
+    {
+        opacity: 0,
+        y: 300,
+        // x:20,
+        stagger: 0.2,
+        // scale:0,
+        // duration: 50,
+        ease: "power4.out",
+        scrollTrigger: {
+            trigger: ".page5_contain",
+            start: "top 60%",
+            end:"top 50%",
+            scrub: 3,
+            // markers: true, // Uncomment for debugging
+
+        }
+    
+        
+})
