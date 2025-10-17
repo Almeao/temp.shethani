@@ -642,26 +642,26 @@ gsap.from(".page5  h3 span",
     
         
 })
-gsap.from(".page5_box1",
-    {
-        opacity: 0,
-        y: 300,
-        // x:20,
-        stagger: 0.2,
-        // scale:0,
-        // duration: 50,
-        ease: "power4.out",
-        scrollTrigger: {
-            trigger: ".page5_contain",
-            start: "top 60%",
-            end:"top 50%",
-            scrub: 3,
-            // markers: true, // Uncomment for debugging
+// gsap.from(".page5_box1",
+//     {
+//         opacity: 0,
+//         y: 300,
+//         // x:20,
+//         stagger: 0.2,
+//         // scale:0,
+//         // duration: 50,
+//         ease: "power4.out",
+//         scrollTrigger: {
+//             trigger: ".page5_contain",
+//             start: "top 60%",
+//             end:"top 50%",
+//             scrub: 3,
+//             // markers: true, // Uncomment for debugging
 
-        }
+//         }
     
         
-})
+// })
 
 var swiper = new Swiper(".mySwiper", {
     slidesPerView: 3,
@@ -677,6 +677,10 @@ var swiper = new Swiper(".mySwiper", {
     },
     speed: 700, // Duration of slide transition in ms (make smoother)
     effect: 'slide', // Default slide effect
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
     // For additional easing, you can use CSS! But Swiper's JS uses 'ease-in-out' by default.
     // If you want custom CSS easing, you can add this to your CSS file:
     // .swiper-wrapper {
