@@ -240,7 +240,7 @@ const page1_imagescroller = gsap.timeline({
         start: "top -20%",
         end: "top -140%",
         scrub: 1,
-        markers:true,
+        // markers:true,
       
         // markers: true, 
         // pin:true,
