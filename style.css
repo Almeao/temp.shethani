@@ -981,24 +981,27 @@ html, body {
 
 .swiper-button-next,
 .swiper-button-prev {
-  background-color: #ffd105;
-  color: #000; /* Ensures the icon is visible if background is yellow */
+  background-color: rgba(255, 255, 255, 0);
+  color: #FFD105; /* Ensures the icon is visible */
   padding: 20px;
   border-radius: 50%;
   transition: background-color 0.25s, color 0.25s;
-  /* Remove transparent background of default swiper navigation buttons */
   width: 28px; 
   height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  /* Optional: subtle border for greater contrast */
+  border: 1px solid #ffffff4f;
 }
 
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
   background-color: transparent;
-  color: #000000;
-  border: 2px solid #F8981C;
+  color: #ffffff;
+  border: 1px solid #f8991c63;
 }
 
 /* Make sure the arrow is visible and colored as per color property */
