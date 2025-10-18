@@ -676,7 +676,7 @@ var swiper = new Swiper(".mySwiper", {
     },
     speed: 900, // Add speed for transition duration (ms)
     coverflowEffect: {
-      rotate: -20,
+      rotate: 0,
       stretch: 20,
       depth: 150,
       modifier: 1,
