@@ -986,8 +986,8 @@ html, body {
   padding: 20px;
   border-radius: 50%;
   transition: background-color 0.25s, color 0.25s;
-  width: 28px; 
-  height: 28px;
+  width: 8px; 
+  height: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -999,7 +999,7 @@ html, body {
 
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
-  background-color: transparent;
+  background-color:#00000054;
   color: #ffffff;
   border: 1px solid #f8991c63;
 }
@@ -1086,40 +1086,39 @@ html, body {
     
 }
 
-.page5_box_lower_detail
-{
-    width: 70%;
+.page5_box_lower_detail {
+    width: 90%; /* use percentage to scale with screen */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
-    padding: 2% 2% 2% 2%;
-    /* padding-left: 2%; */
-}
-
-.page5_box_lower_detail h2
-{
+    padding: 2%;
+    box-sizing: border-box;
+  }
+  
+  .page5_box_lower_detail h2 {
     font-family: 'font-1';
-    font-size: 3em;
+    font-size: clamp(1.5rem, 2vw, 3em); /* responsive font size */
     color: #fff;
-    
-}
-.page5_box_lower_detail p
-{
+    margin: 0;
+  }
+  
+  .page5_box_lower_detail p {
     font-family: 'saira';
-    font-size: 1.3em;
-    line-height: 120%;
+    font-size: clamp(0.9rem, 1vw, 1.3em);
+    line-height: 1.4;
     color: #fff;
-
-}
+    margin-top: 1em;
+  }
+  
 
 .page5_box_lower_detail span
 {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     aspect-ratio: 1/1;
     font-size: 2em;
     font-weight: 900;
@@ -1134,9 +1133,27 @@ html, body {
     /* Prevent font descent from shifting text */
     padding: 0;
     box-sizing: border-box;
-    margin-left: 110%;
+    margin-left: 90%;
 }
 
+/* Responsive handling for further safety */
+@media (max-width: 650px) {
+    .page5_box_lower_detail {
+        max-width: 95vw;
+        padding: 4% 2%;
+    }
+    .page5_box_lower_detail h2 {
+        font-size: 1.3em;
+    }
+    .page5_box_lower_detail p {
+        font-size: 1em;
+    }
+    .page5_box_lower_detail span {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2em;
+    }
+}
 
 
 
