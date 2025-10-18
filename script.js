@@ -633,8 +633,8 @@ gsap.from(".page5  h3 span",
         ease: "bounce.out",
         scrollTrigger: {
             trigger: ".page5 h3",
-            start: "top 50%",
-            end:"top top",
+            start: "top 30%",
+            end:"top 40%",
             scrub: 3,
             // markers: true, // Uncomment for debugging
 
@@ -663,27 +663,50 @@ gsap.from(".page5  h3 span",
         
 // })
 
+// Move the Swiper pagination below the swiper wrapper after initialization
 var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 3,
-    spaceBetween: 30,
-    loop: true, // Enable unlimited looping
+    effect: "coverflow",
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: "auto",
+    loop: true, // Enable looping
+    autoplay: {
+      delay: 2000, // Auto-slide every 2 seconds
+      disableOnInteraction: false, // Keep autoplay even after user swipes
+    },
+    speed: 900, // Add speed for transition duration (ms)
+    coverflowEffect: {
+      rotate: -20,
+      stretch: 20,
+      depth: 150,
+      modifier: 1,
+      slideShadows: true,
+    },
     pagination: {
       el: ".swiper-pagination",
-      clickable: true,
+      dynamicBullets: true,
     },
-    autoplay: {
-      delay: 3000, // Auto-scroll every 3 seconds
-      disableOnInteraction: false,
-    },
-    speed: 700, // Duration of slide transition in ms (make smoother)
-    effect: 'slide', // Default slide effect
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
     },
-    // For additional easing, you can use CSS! But Swiper's JS uses 'ease-in-out' by default.
-    // If you want custom CSS easing, you can add this to your CSS file:
-    // .swiper-wrapper {
-    //   transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1) !important;
-    // }
+    // Add easing for smooth animation
+    // Swiper uses CSS transitions for most effects, set custom easing:
+    on: {
+      setTransition: function(swiper, transition) {
+        let slides = swiper.slides;
+        for(let i=0; i<slides.length; i++) {
+          slides[i].style.transitionTimingFunction = 'cubic-bezier(0.36,0.66,0.04,1)'; // easeOutCubic like
+        }
+      }
+    }
+});
+
+// After Swiper initializes, move the pagination below the swiper wrapper
+document.addEventListener("DOMContentLoaded", function() {
+  var swiperWrapper = document.querySelector('.mySwiper');
+  var swiperPagination = document.querySelector('.swiper-pagination');
+  if (swiperWrapper && swiperPagination) {
+    swiperWrapper.parentNode.insertBefore(swiperPagination, swiperWrapper.nextSibling);
+  }
 });
