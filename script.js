@@ -1,7 +1,9 @@
 // Initialize Lenis for smooth scrolling
 const lenis = new Lenis({
-  lerp: 0.1, // Adjust for smoothness (0.04 - 0.2 is typical)
+  lerp: 1, // Adjust for smoothness (0.04 - 0.2 is typical)
   smooth: true,
+  easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+  wheelMultiplier: 1.5,
   direction: 'vertical',
   gestureDirection: 'vertical',
   mouseMultiplier: 1,
@@ -364,7 +366,7 @@ gsap.from(".box1",{
         trigger:".page2_contain",
         start:"top 50%",
         end:"top 20%",
-        scrub:true,
+        scrub:1,
         ease:"power4.out",
         
     }
@@ -379,7 +381,7 @@ gsap.from(".box2",{
         trigger:".page2_contain",
         start:"top 50%",
         end:"top 20%",
-        scrub:true,
+        scrub:1,
         ease:"power4.out",
 
     }
@@ -393,7 +395,7 @@ gsap.from(".box3",{
         trigger:".page2_contain",
         start:"top 50%",
         end:"top 20%",
-        scrub:true,
+        scrub:1,
         ease:"power4.out",
 
     }
@@ -407,7 +409,7 @@ gsap.from(".box4",{
         trigger:".page2_contain",
         start:"top 40%",
         end:"top 20%",
-        scrub:true,
+        scrub:1,
         ease:"power4.out",
 
     }
@@ -425,7 +427,7 @@ gsap.from(".box5",{
         trigger:".page2_contain",
         start:"top 40%",
         end:"top 10%",
-        scrub:true,
+        scrub:1,
         ease:"power4.out",
 
     }
@@ -440,7 +442,7 @@ gsap.from(".box6",{
         trigger:".page2_contain",
         start:"top 40%",
         end:"top 10%",
-        scrub:true,
+        scrub:1,
         ease:"power4.out",
 
     }
@@ -454,7 +456,7 @@ gsap.from(".box7",{
         trigger:".page2_contain",
         start:"top 40%",
         end:"top 10%",
-        scrub:true,
+        scrub:1,
         ease:"power4.out",
 
     }
@@ -577,12 +579,13 @@ function initPage4MaskAnimation() {
     WebkitMaskSize: () => `auto ${finalMaskHeight}vw`,
     maskSize: () => `auto ${finalMaskHeight}px`,
     // ease: 'power4.out',
-    stagger:0.2,
+    stagger:0.6,
+    ease:"power4.out",
     scrollTrigger: {
       trigger: page4,
       start: 'top top',
-      end: '+=150%',
-      scrub: 0,
+      end: '+=150vh',
+      scrub: 1,
       pin: true,
       ease:"power4.out",
       anticipatePin: 1,
@@ -634,8 +637,8 @@ gsap.from(".page5  h3 span",
         ease: "bounce.out",
         scrollTrigger: {
             trigger: ".page5 h3",
-            start: "top 30%",
-            end:"top 40%",
+            start: "top 90%",
+            end:"top 70%",
             scrub: 3,
             // markers: true, // Uncomment for debugging
 
@@ -711,3 +714,55 @@ document.addEventListener("DOMContentLoaded", function() {
     swiperWrapper.parentNode.insertBefore(swiperPagination, swiperWrapper.nextSibling);
   }
 });
+// Fix GSAP mask animation: slow down mask reveal & ensure smooth scroll animation
+// Re-initialize the animation after DOMContentLoaded to ensure ScrollTrigger works as intended
+
+document.addEventListener("DOMContentLoaded", function() {
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    // Remove previous ScrollTriggers for .page4 to avoid stacking on refresh
+    ScrollTrigger.getAll().forEach(trigger => {
+      if (trigger.trigger && trigger.trigger.classList && trigger.trigger.classList.contains('page4')) trigger.kill();
+    });
+    initPage4MaskAnimation();
+  }
+});
+
+// Adjust the function to slow down and smooth the mask reveal
+function initPage4MaskAnimation() {
+  const page4 = document.querySelector('.page4');
+  if (!page4) return;
+
+  // Prevent double initialization
+  if (page4.dataset.maskAnimInit === '1') return;
+  page4.dataset.maskAnimInit = '1';
+
+  // Initial mask height in px
+  const initialMaskHeight = 460;
+  const finalMaskHeight = 500; // Larger for more noticeable animation
+
+  // Set initial mask size
+  gsap.set(page4, {
+    WebkitMaskSize: `auto ${initialMaskHeight}px`,
+    maskSize: `auto ${initialMaskHeight}px`,
+  });
+
+  gsap.to(page4, {
+    WebkitMaskSize: `auto ${finalMaskHeight}vw`,
+    maskSize: `auto ${finalMaskHeight}px`,
+    ease: "power1.inOut",
+    scrollTrigger: {
+      trigger: page4,
+      start: "top top",
+      end: "+=300vh", // make scroll longer and smoother
+      scrub: 3,      // smooth animation tied to scroll
+      pin: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true
+      // markers: true, // Uncomment for debugging
+    }
+  });
+
+  ScrollTrigger.refresh();
+}
+
+
