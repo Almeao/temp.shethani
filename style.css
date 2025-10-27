@@ -924,7 +924,7 @@ html, body {
 {
     position: relative;
     width: 100vw;
-    height: 100vh;
+    height: 130vh;
     /* margin-top: 15%; */
     /* background-color: aquamarine; */
     display: flex;
@@ -961,6 +961,7 @@ html, body {
  .swiper {
     width: 100vw;
     height: 80vh;
+    margin-top: 5%;
   }
 
   .swiper-slide {
@@ -1015,7 +1016,7 @@ html, body {
 
 .swiper-pagination-bullet {
   background: #000 !important; /* The color you want for inactive bullets */
-  opacity: 0.2;
+  opacity: 0.7;
 }
 
 .swiper-pagination-bullet-active {
@@ -1060,6 +1061,7 @@ html, body {
     /* padding: 2% 2% 2% 2%; */
     display: flex;
     flex-direction: column;
+    /* display: inline-block; */
     align-items: flex-start;
     /* align-items: start; */
 }
@@ -1068,7 +1070,7 @@ html, body {
 {
     display: flex;
     width: auto;
-    padding-left: 2%;
+    padding-left: 3%;
     gap: 10%;
 }
 .page5_box_lower button
@@ -1077,107 +1079,79 @@ html, body {
     color: #F8981C;
     width: auto;
     border: none;
-    padding: 10% 15%;
+    padding: 15% 20% 10% 20%;
+    /* padding-top: 1%; */
     font-family: 'font-1';
     white-space: nowrap;
     border-radius: 50vw;
-    font-size: 0.9em;
+    font-size: 0.7em;
     font-weight: 800;
     
 }
 
-.page5_box_lower_detail {
-    width: 90%; /* use percentage to scale with screen */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    padding: 2%;
-    box-sizing: border-box;
-  }
-  
-  .page5_box_lower_detail h2 {
-    font-family: 'font-1';
-    font-size: clamp(1.5rem, 2vw, 3em); /* responsive font size */
-    color: #fff;
-    margin: 0;
-  }
-  
-  .page5_box_lower_detail p {
-    font-family: 'saira';
-    font-size: clamp(0.9rem, 1vw, 1.3em);
-    line-height: 1.4;
-    color: #fff;
-    margin-top: 1em;
-  }
-  
+.page5_box_lower_detail
+{
+    display: inline-block;
+    text-align: start;
+    padding: 3% 3% 3% 3%;
+    /* justify-content: start; */
+}
 
+
+
+
+
+.page5_box_lower_detail h2
+{
+    font-size: 2.5vmax;
+    font-family: 'font-1';
+    font-weight: 800;
+    color: #ffffff;
+    
+}
+
+
+.page5_box_lower_detail p
+{
+    font-size: 1.5vmax;
+    font-family: 'saira';
+    color: #ffffff;
+    line-height: 1.2;
+   
+}
+
+
+/* 
 .page5_box_lower_detail span
 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    aspect-ratio: 1/1;
-    font-size: 2em;
-    font-weight: 900;
-    background-color: #fff;
+    font-size: 2vmax;
     color: #F8981C;
-    border-radius: 50vw; /* subtle corners, not fully round */
-    /* Center content accounting for rotation */
-    transform: rotate(-45deg);
-    /* Remove text-align and rotate properties that interfere with centering */
-    line-height: 1;
-    overflow: hidden;
-    /* Prevent font descent from shifting text */
-    padding: 0;
-    box-sizing: border-box;
-    margin-left: 90%;
+    font-weight: 900;
+    rotate: -45deg;
+    width: 3vmax;
+    height: 3vmax;
+    display: flex;
+    border-radius: 50vw;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
 }
+ */
 
-/* Responsive handling for further safety */
-@media (max-width: 650px) {
-    .page5_box_lower_detail {
-        max-width: 95vw;
-        padding: 4% 2%;
-    }
-    .page5_box_lower_detail h2 {
-        font-size: 1.3em;
-    }
-    .page5_box_lower_detail p {
-        font-size: 1em;
-    }
-    .page5_box_lower_detail span {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2em;
-    }
+
+.page5_box_lower_footer 
+{
+padding: 3% 3% 3% 3%;
+display: flex;
+width: 90%;
+justify-content: end;
+align-items: end;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.page5_box_lower_footer img
+{
+    
+    object-fit: cover;
+}
 
 
 

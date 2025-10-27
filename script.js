@@ -239,7 +239,7 @@ const page1_imagescroller = gsap.timeline({
         scroller: "body",
         start: "top -20%",
         end: "top -140%",
-        scrub: 1,
+        scrub: 0,
         // markers:true,
       
         // markers: true, 
@@ -576,12 +576,13 @@ function initPage4MaskAnimation() {
   gsap.to(page4, {
     WebkitMaskSize: () => `auto ${finalMaskHeight}vw`,
     maskSize: () => `auto ${finalMaskHeight}px`,
-    ease: 'none',
+    // ease: 'power4.out',
+    stagger:0.2,
     scrollTrigger: {
       trigger: page4,
       start: 'top top',
-      end: '+=120%',
-      scrub: 2,
+      end: '+=150%',
+      scrub: 0,
       pin: true,
       ease:"power4.out",
       anticipatePin: 1,
@@ -674,12 +675,12 @@ var swiper = new Swiper(".mySwiper", {
       delay: 2000, // Auto-slide every 2 seconds
       disableOnInteraction: false, // Keep autoplay even after user swipes
     },
-    speed: 900, // Add speed for transition duration (ms)
+    speed: 200, // Add speed for transition duration (ms)
     coverflowEffect: {
       rotate: 0,
       stretch: 20,
       depth: 150,
-      modifier: 1,
+      modifier: 2,
       slideShadows: true,
     },
     pagination: {
