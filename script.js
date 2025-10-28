@@ -541,14 +541,14 @@ window.addEventListener("load", () => {
 
 
 // Handle resizing safely
-let resizeTimeout;
-window.addEventListener("resize", () => {
-  clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(() => {
-    ScrollTrigger.refresh(true);
-    initHorizontalScroll();
-  }, 300);
-});
+// let resizeTimeout;
+// window.addEventListener("resize", () => {
+//   clearTimeout(resizeTimeout);
+//   resizeTimeout = setTimeout(() => {
+//     ScrollTrigger.refresh(true);
+//     initHorizontalScroll();
+//   }, 300);
+// });
 
 // Animate the mask size on page4 as we scroll through it
 // Fix GSAP animation to trigger correctly when .page4 reaches top
@@ -563,7 +563,7 @@ function initPage4MaskAnimation() {
   page4.dataset.maskAnimInit = '1';
 
   // Initial mask size height (matches initial CSS)
-  const initialMaskHeight = 460;
+  const initialMaskHeight = 430;
   // Final mask size height (increase, but not overly drastic)
   // For a visible but more modest mask reveal, pick a value that's noticeably larger, but not extreme
   const finalMaskHeight = 500; // was 1800, now more subtle
@@ -579,18 +579,19 @@ function initPage4MaskAnimation() {
     WebkitMaskSize: () => `auto ${finalMaskHeight}vw`,
     maskSize: () => `auto ${finalMaskHeight}px`,
     // ease: 'power4.out',
-    stagger:0.6,
-    ease:"power4.out",
+    // stagger:3,
+    ease:"power1.out",
+    duration:50,
     scrollTrigger: {
       trigger: page4,
       start: 'top top',
-      end: '+=150vh',
-      scrub: 1,
+      end: '+=150%',
+      scrub: true,
       pin: true,
-      ease:"power4.out",
+      ease:"none",
       anticipatePin: 1,
       invalidateOnRefresh: true,
-      // markers: true, // Uncomment to debug
+      // markers: true, 
     }
   });
 
@@ -726,43 +727,3 @@ document.addEventListener("DOMContentLoaded", function() {
     initPage4MaskAnimation();
   }
 });
-
-// Adjust the function to slow down and smooth the mask reveal
-function initPage4MaskAnimation() {
-  const page4 = document.querySelector('.page4');
-  if (!page4) return;
-
-  // Prevent double initialization
-  if (page4.dataset.maskAnimInit === '1') return;
-  page4.dataset.maskAnimInit = '1';
-
-  // Initial mask height in px
-  const initialMaskHeight = 460;
-  const finalMaskHeight = 500; // Larger for more noticeable animation
-
-  // Set initial mask size
-  gsap.set(page4, {
-    WebkitMaskSize: `auto ${initialMaskHeight}px`,
-    maskSize: `auto ${initialMaskHeight}px`,
-  });
-
-  gsap.to(page4, {
-    WebkitMaskSize: `auto ${finalMaskHeight}vw`,
-    maskSize: `auto ${finalMaskHeight}px`,
-    ease: "power1.inOut",
-    scrollTrigger: {
-      trigger: page4,
-      start: "top top",
-      end: "+=300vh", // make scroll longer and smoother
-      scrub: 3,      // smooth animation tied to scroll
-      pin: true,
-      anticipatePin: 1,
-      invalidateOnRefresh: true
-      // markers: true, // Uncomment for debugging
-    }
-  });
-
-  ScrollTrigger.refresh();
-}
-
-
