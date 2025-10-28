@@ -44,6 +44,7 @@ html, body {
 {
     overflow-y: hidden;
     font-size: 5em;
+    /* display: none; */
     margin-left: 2%;
     color: white;
 }
@@ -124,7 +125,7 @@ html, body {
     color: white;
     border: 2px solid white;
     border-radius: 50px;
-    
+    display: none;
     margin-top: 20%;
 }
 
@@ -614,7 +615,7 @@ html, body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 12px 22px;
+    padding: 10px 20px;
     border-radius: 999px;
     font-family: 'salmond', sans-serif;
     font-size: 20px;
@@ -723,27 +724,27 @@ html, body {
 .panel2_right p:nth-child(3),
 .panel3_right p:nth-child(3),
 .panel4_right p:nth-child(3) {
-    word-spacing: 2.4vmax;
+    word-spacing: 0.5vmax;
 }
 .panel2_right p:nth-child(4),
 .panel3_right p:nth-child(4),
 .panel4_right p:nth-child(4) {
-    word-spacing: 1.85vmax;
+    word-spacing: 0.5vmax;
 }
 .panel2_right p:nth-child(5),
 .panel3_right p:nth-child(5),
 .panel4_right p:nth-child(5) {
-    word-spacing: 1.5vmax;
+    word-spacing: 0.5vmax;
 }
 .panel2_right p:nth-child(6),
 .panel3_right p:nth-child(6),
 .panel4_right p:nth-child(6) {
-    word-spacing: 4.15vmax;
+    word-spacing: 0.5vmax;
 }
 .panel2_right p:nth-child(7),
 .panel3_right p:nth-child(7),
 .panel4_right p:nth-child(7) {
-    word-spacing: 3vmax;
+    word-spacing: 0.5vmax;
 }
 
 
@@ -822,7 +823,7 @@ html, body {
 
 .panel4_left
 {
-    width: 50vw;
+    width: 45vw;
     height: 100vh;
     /* background-color: aquamarine; */
     display: flex;
