@@ -581,7 +581,7 @@ function initPage4MaskAnimation() {
     // ease: 'power4.out',
     // stagger:3,
     ease:"power1.out",
-    duration:50,
+    duration:100,
     scrollTrigger: {
       trigger: page4,
       start: 'top top',
