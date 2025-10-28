@@ -412,6 +412,7 @@ html, body {
 {
     font-size: 8em;
     line-height: 110px;
+    font-family: 'font-1';
 }
 .page1_contain_2_right h3:nth-child(1)
 {
@@ -423,10 +424,12 @@ html, body {
     font-size: 4em;
     line-height: 70px;
     letter-spacing: 5px;
+    font-family: 'font-1';
 }
 .page1_contain_2_right p
 {
     font-size: 1.2em;
+    font-family: 'saira';
     /* margin-left: %; */
     
 }
