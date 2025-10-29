@@ -469,7 +469,7 @@ html, body {
     text-align: center;
     font-family: "font-1";
     font-size: 5em;
-    line-height: 70px;
+    line-height: 80px;
     color: #F8981C;
 }
 
@@ -661,6 +661,7 @@ html, body {
   justify-content: center;
   align-items: center;
   font-family: 'font-1';
+  /* background-color: ; */
   /* background-color: transparent; */
   color: #ffffff;
   overflow: hidden;
@@ -676,7 +677,7 @@ html, body {
 
 .panel2_left
 {
-    width: 50vw;
+    width: 40vw;
     height: 100vh;
     /* background-color: aquamarine; */
     display: flex;
@@ -686,7 +687,7 @@ html, body {
 }
 .panel2_left img
 {
-    width: 30%;
+    width: 37%;
     height: 70%;
     position: relative;
     margin-right: 20%;
@@ -751,7 +752,7 @@ html, body {
 
 .panel3_left
 {
-    width: 50vw;
+    width: 40vw;
     height: 100vh;
     /* background-color: aquamarine; */
     display: flex;
@@ -943,7 +944,7 @@ html, body {
     text-align: center;
     font-family: "font-1";
     font-size: 5em;
-    line-height: 70px;
+    line-height: 80px;
     color: #F8981C;
 }
 /* .page5_contain
@@ -964,7 +965,7 @@ html, body {
 
  .swiper {
     width: 100vw;
-    height: 80vh;
+    height: 75vh;
     margin-top: 5%;
   }
 
@@ -972,7 +973,7 @@ html, body {
     text-align: center;
     font-size: 18px;
     width: 35vw;
-    height: 80vh;
+    height: 75vh;
 
     background: linear-gradient(135deg, #FFD105 0%, #F8981C 100%);
     display: flex;
@@ -1207,4 +1208,97 @@ align-items: end;
     font-weight: 100;
     /* align-items: end; */
     /* background-color: #E41E26; */
+}
+
+
+
+@media screen and (min-width: 2400px)
+{
+    .page1_contain_2_right h3
+{
+    font-size: 11em;
+    line-height: 150px;
+    font-family: 'font-1';
+}
+.page1_contain_2_right h3:nth-child(1)
+{
+    letter-spacing: 18px;
+}
+
+.page1_contain_2_right h2
+{
+    font-size: 6em;
+    line-height: 100px;
+    letter-spacing: 0px;
+    font-family: 'font-1';
+}
+.page1_contain_2_right p
+{
+    font-size: 1.65em;
+    font-family: 'saira';
+    /* margin-left: %; */
+    
+}
+
+
+.page1_contain_2_right p:nth-child(4n)
+{
+    word-spacing: 0.9em;
+}
+.page1_contain_2_right p:nth-child(5n)
+{
+    word-spacing: 0.5em;
+}
+.page1_contain_2_right p:nth-child(6n)
+{
+    word-spacing: 0.5em;
+}
+
+
+.page2 h3
+{
+    
+    font-size: 7em;
+    line-height: 110px;
+   
+}
+
+
+
+
+
+.panel1
+{
+    font-size: 20em;
+    
+}
+
+.panel2_right h3
+{
+    font-size: 9em;
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+
+/* .panel2_right p */
+
+.panel2_right p,
+.panel3_right p,
+.panel4_right p {
+    font-size: 3em;
+    font-weight: 400;
+    /* text-align:; */
+    line-height: 1em;
+    font-family: 'saira';
+}
+
+
+.page5 h3
+{
+   
+    font-size: 7em;
+    line-height: 110px;
+   
+}
+
 }

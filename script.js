@@ -114,7 +114,7 @@ lodder.to(".lodder_progress", {
 )
 
 lodder.to(".lodder_logo", {
-    y: "-350%",
+    y: "-450%",
     scale:0.5,
     duration: 1,
     ease: "power2.inOut",
@@ -323,6 +323,82 @@ gsap.from(".page1_contain_2_left_img_pinuts", {
 
 
 
+// Here's a working version to animate those two h3 lines on page 2:
+
+gsap.from(".page1_contain_2_right h3", {
+  opacity: 0,
+  filter: "blur(50px)",
+  // y: 100,
+ 
+  scrollTrigger: {
+    trigger: ".page1_contain_2",
+    start: "top 80%",
+    end: "top 20%",
+    // markers: true,
+    scrub: 3
+  }
+  }
+)
+
+
+document.querySelectorAll('.page1_contain_2_right h2').forEach(function(h2) {
+  // Get the text content and trim it
+  var text = h2.textContent;
+  // Create a new HTML string with each character wrapped in a span
+  var spanned = '';
+  for (var i = 0; i < text.length; i++) {
+      // Preserve spaces
+      if (text[i] === ' ') {
+          spanned += '<span>&nbsp;</span>';
+      } else {
+          spanned += '<span class:"page1_contain_2_right_h2_span">' + text[i] + '</span>';
+      }
+  }
+  // Set the new HTML
+  h2.innerHTML = spanned;
+});
+
+
+gsap.from(".page1_contain_2_right h2 span",
+  {
+      opacity: 0,
+      y: 100,
+      x:20,
+      stagger: 0.5,
+      // scale:0,
+      duration: 10,
+      ease: "bounce.out",
+      scrollTrigger: {
+          trigger: ".page1_contain_2",
+          start: "top 50%",
+          end:"top top",
+          scrub: 5,
+          // markers: true, // Uncomment for debugging
+
+      }
+  
+      
+})
+ 
+gsap.from(".page1_contain_2_right p", {
+  opacity: 0,
+  filter: "blur(5px)",
+  y: 100,
+  stagger: 0.6,
+  // scale:0,
+  duration: 10,
+  scrollTrigger: {
+    trigger: ".page1_contain_2",
+    start: "top 30%",
+    end: "top top",
+ 
+    scrub: 5
+  }
+  }
+)
+
+
+
 
 
 document.querySelectorAll('.page2 h3').forEach(function(h3) {
@@ -353,8 +429,8 @@ gsap.from(".page2  h3 span",
         ease: "bounce.out",
         scrollTrigger: {
             trigger: ".page2 h3",
-            start: "top 50%",
-            end:"top top",
+            start: "top 70%",
+            end:"top 40%",
             scrub: 3,
             // markers: true, // Uncomment for debugging
 
@@ -362,111 +438,140 @@ gsap.from(".page2  h3 span",
     
         
 })
-    
+   
 
-gsap.from(".box1",{
-    opacity:0,
-    x:-300,
-    scrollTrigger:
-    {
-        trigger:".page2_contain",
-        start:"top 50%",
-        end:"top 20%",
-        scrub:1,
-        ease:"power4.out",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// gsap.from(".box1",{
+//     opacity:0,
+//     x:-300,
+//     scrollTrigger:
+//     {
+//         trigger:".page2_contain",
+//         start:"top 50%",
+//         end:"top 20%",
+//         scrub:1,
+//         ease:"power4.out",
         
-    }
-})
+//     }
+// })
 
 
-gsap.from(".box2",{
-    opacity:0,
-    y:-200,
-    scrollTrigger:
-    {
-        trigger:".page2_contain",
-        start:"top 50%",
-        end:"top 20%",
-        scrub:1,
-        ease:"power4.out",
+// gsap.from(".box2",{
+//     opacity:0,
+//     y:-200,
+//     scrollTrigger:
+//     {
+//         trigger:".page2_contain",
+//         start:"top 50%",
+//         end:"top 20%",
+//         scrub:1,
+//         ease:"power4.out",
 
-    }
-})
+//     }
+// })
 
-gsap.from(".box3",{
-    opacity:0,
-    x:300,
-    scrollTrigger:
-    {
-        trigger:".page2_contain",
-        start:"top 50%",
-        end:"top 20%",
-        scrub:1,
-        ease:"power4.out",
+// gsap.from(".box3",{
+//     opacity:0,
+//     x:300,
+//     scrollTrigger:
+//     {
+//         trigger:".page2_contain",
+//         start:"top 50%",
+//         end:"top 20%",
+//         scrub:1,
+//         ease:"power4.out",
 
-    }
-})
-gsap.from(".box4",{
-    opacity:0,
-    x:-300,
-    delay:2,
-    scrollTrigger:
-    {
-        trigger:".page2_contain",
-        start:"top 40%",
-        end:"top 20%",
-        scrub:1,
-        ease:"power4.out",
+//     }
+// })
+// gsap.from(".box4",{
+//     opacity:0,
+//     x:-300,
+//     delay:2,
+//     scrollTrigger:
+//     {
+//         trigger:".page2_contain",
+//         start:"top 40%",
+//         end:"top 20%",
+//         scrub:1,
+//         ease:"power4.out",
 
-    }
-})
-
-
+//     }
+// })
 
 
-gsap.from(".box5",{
-    opacity:0,
-    y:300,
-    delay:0.7,
-    scrollTrigger:
-    {
-        trigger:".page2_contain",
-        start:"top 40%",
-        end:"top 10%",
-        scrub:1,
-        ease:"power4.out",
 
-    }
-})
 
-gsap.from(".box6",{
-    opacity:0,
-    y:300,
-    delay:0.9,
-    scrollTrigger:
-    {
-        trigger:".page2_contain",
-        start:"top 40%",
-        end:"top 10%",
-        scrub:1,
-        ease:"power4.out",
+// gsap.from(".box5",{
+//     opacity:0,
+//     y:300,
+//     delay:0.7,
+//     scrollTrigger:
+//     {
+//         trigger:".page2_contain",
+//         start:"top 40%",
+//         end:"top 10%",
+//         scrub:1,
+//         ease:"power4.out",
 
-    }
-})
-gsap.from(".box7",{
-    opacity:0,
-    x:300,
-    delay:0.9,
-    scrollTrigger:
-    {
-        trigger:".page2_contain",
-        start:"top 40%",
-        end:"top 10%",
-        scrub:1,
-        ease:"power4.out",
+//     }
+// })
 
-    }
-})
+// gsap.from(".box6",{
+//     opacity:0,
+//     y:300,
+//     delay:0.9,
+//     scrollTrigger:
+//     {
+//         trigger:".page2_contain",
+//         start:"top 40%",
+//         end:"top 10%",
+//         scrub:1,
+//         ease:"power4.out",
+
+//     }
+// })
+// gsap.from(".box7",{
+//     opacity:0,
+//     x:300,
+//     delay:0.9,
+//     scrollTrigger:
+//     {
+//         trigger:".page2_contain",
+//         start:"top 40%",
+//         end:"top 10%",
+//         scrub:1,
+//         ease:"power4.out",
+
+//     }
+// })
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -688,8 +793,8 @@ var swiper = new Swiper(".mySwiper", {
     speed: 200, // Add speed for transition duration (ms)
     coverflowEffect: {
       rotate: 0,
-      stretch: 20,
-      depth: 150,
+      stretch: 50,
+      depth: 100,
       modifier: 2,
       slideShadows: true,
     },
