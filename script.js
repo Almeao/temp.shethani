@@ -205,31 +205,31 @@ lodder.from(".page1_contain_oil-img_container img",{
 //================ nav scroll animation ============================
 
 
-// let lastScrollY = window.scrollY;
-// const nav = document.querySelector('.nav');
-// let ticking = false;
+let lastScrollY = window.scrollY;
+const nav = document.querySelector('.nav');
+let ticking = false;
 
-// function handleNavOnScroll() {
-//     const currentScrollY = window.scrollY;
-//     if (currentScrollY > lastScrollY && currentScrollY > 50) {
-//         nav.style.transform = 'translateY(-100%)';
-//         nav.style.transition = 'transform 0.5s cubic-bezier(0.77,0,0.18,1)';
-//         // nav_main_logo.style.transform = 'scale(0)';
-//     } else {
-//         nav.style.transform = 'translateY(0)';
-//         nav.style.transition = 'transform 0.5s cubic-bezier(0.77,0,0.18,1)';
-//         // nav_main_logo.style.transform = 'scale(1)';
-//     }
-//     lastScrollY = currentScrollY;
-//     ticking = false;
-// }
+function handleNavOnScroll() {
+    const currentScrollY = window.scrollY;
+    if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        nav.style.transform = 'translateY(-100%)';
+        nav.style.transition = 'transform 0.5s cubic-bezier(0.77,0,0.18,1)';
+        // nav_main_logo.style.transform = 'scale(0)';
+    } else {
+        nav.style.transform = 'translateY(0)';
+        nav.style.transition = 'transform 0.5s cubic-bezier(0.77,0,0.18,1)';
+        // nav_main_logo.style.transform = 'scale(1)';
+    }
+    lastScrollY = currentScrollY;
+    ticking = false;
+}
 
-// window.addEventListener('scroll', function() {
-//     if (!ticking) {
-//         window.requestAnimationFrame(handleNavOnScroll);
-//         ticking = true;
-//     }
-// });
+window.addEventListener('scroll', function() {
+    if (!ticking) {
+        window.requestAnimationFrame(handleNavOnScroll);
+        ticking = true;
+    }
+});
 
 
 
@@ -276,6 +276,24 @@ const page1_imagescroller = gsap.timeline({
         // }
     }
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 page1_imagescroller.to(".page1_contain_oil-img_container", 
 
     {
