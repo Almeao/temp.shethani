@@ -560,6 +560,45 @@ html, body {
 }
 
 
+
+
+
+.page2_scroll_aniation_img
+{
+    position: absolute;
+    width: 10vmax;
+    height: 10vmax;
+    z-index: 300;
+    /* background-color: #E41E26; */
+   
+
+    
+}
+.page2_scroll_aniation_img1
+{
+    top: 10%;
+    left:13%;
+}
+.page2_scroll_aniation_img2
+{
+    top: 90%;
+    left:80%;
+}
+
+.page2_scroll_aniation_img img
+{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+
+
+
+
+
+
 .scroller {
     width: 100%;
     height: auto;
@@ -670,7 +709,7 @@ html, body {
 
 .panel1
 {
-    font-size: 15em;
+    font-size: 13em;
     text-align: center;
     font-weight: 900;
 }
@@ -1269,7 +1308,7 @@ align-items: end;
 
 .panel1
 {
-    font-size: 20em;
+    font-size: 18em;
     
 }
 

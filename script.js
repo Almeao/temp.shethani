@@ -1,6 +1,9 @@
+gsap.registerPlugin(ScrollTrigger);
+
+
 // Initialize Lenis for smooth scrolling
 const lenis = new Lenis({
-  lerp: 1, // Adjust for smoothness (0.04 - 0.2 is typical)
+  lerp: 0, // Adjust for smoothness (0.04 - 0.2 is typical)
   smooth: true,
   easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
   wheelMultiplier: 1.5,
@@ -140,14 +143,14 @@ lodder.from(".nav_main_logo",{
 
 
 
-lodder.from(".nav_option hr",{
-    x:-100,
-    opacity:0,
-    scrub:5,
-    stagger:0.2,
-    ease: "bounce.out",
-},
-)
+// lodder.from(".nav_option hr",{
+//     x:-100,
+//     opacity:0,
+//     scrub:5,
+//     stagger:0.2,
+//     ease: "bounce.out",
+// },
+// )
 
 
 lodder.from(".page1_bg_text",{
@@ -248,45 +251,9 @@ const page1_imagescroller = gsap.timeline({
         start: "top -20%",
         end: "top -140%",
         scrub: 0,
-        // markers:true,
-      
-        // markers: true, 
-        // pin:true,
-       
-        // onComplite: () => {
-        //     gsap.to(
-        //         ".page1_contain_2_left_img_oil img", 
-        //         { scale: 1, duration: 2, ease: "back.out(1.7)" }
-        //     );
-        //     gsap.to(
-        //         ".page1_contain_2_left_img_pinuts img", 
-        //         { scale: 1, duration: 2, delay: 2, ease: "back.out(1.7)" }
-        //     );
-        // },
-        // onLeaveBack: () => {
-        //     gsap.to(
-        //         ".page1_contain_2_left_img_oil img", 
-        //         { scale: 0, duration: 0.6, scrub:5,ease: "power4.out" }
-        //     );
-        //     gsap.to(
-        //         ".page1_contain_2_left_img_pinuts img", 
-        //         { scale: 0, duration: 0.6,scrub:5
-        //             , ease: "power4.out" }
-        //     );
-        // }
+
     }
 })
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -345,8 +312,10 @@ gsap.from(".page1_contain_2_left_img_pinuts", {
 
 gsap.from(".page1_contain_2_right h3", {
   opacity: 0,
-  filter: "blur(50px)",
-  // y: 100,
+  // filter: "blur(50px)",
+  y: 50,
+  stagger:0.2,
+
  
   scrollTrigger: {
     trigger: ".page1_contain_2",
@@ -583,6 +552,49 @@ gsap.from(".page2  h3 span",
 
 
 
+gsap.from(".page2_scroll_aniation_img1 img",{
+    // opacity:0,
+    y:200,
+
+    scrollTrigger:
+    {
+        trigger:".page2",
+        start:"top 70%",
+        end:"top top",
+        // scrub:1,
+        ease:"power4.out",
+        scrub:0,
+    }
+})
+
+
+
+
+gsap.from(".page2_scroll_aniation_img2 img",{
+    // opacity:0,
+    y:200,
+
+    scrollTrigger:
+    {
+        trigger:".page2_scroll_aniation_img2",
+        start:"top 90%",
+        end:"top 40%",
+        // scrub:1,
+        ease:"power4.out",
+        // markers:true,
+        scrub:0,
+    }
+})
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -601,63 +613,95 @@ gsap.from(".page2  h3 span",
 
 gsap.registerPlugin(ScrollTrigger);
 
-function initHorizontalScroll() {
-  const section = document.querySelector(".page3");
-  const container = document.querySelector(".page3_contain");
+// function initHorizontalScroll() {
+//   const section = document.querySelector(".page3");
+//   const container = document.querySelector(".page3_contain");
 
-  // Remove existing triggers for this section to ensure fresh setup
-  ScrollTrigger.getAll().forEach(trigger => {
-    if (trigger.trigger === section) trigger.kill();
-  });
-  gsap.set(container, { clearProps: "transform" });
+//   // Remove existing triggers for this section to ensure fresh setup
+//   ScrollTrigger.getAll().forEach(trigger => {
+//     if (trigger.trigger === section) trigger.kill();
+//   });
+//   gsap.set(container, { clearProps: "transform" });
 
-  // Calculate horizontal scroll distance
-  const totalScroll = container.scrollWidth - window.innerWidth;
-//   const limitedScroll = totalScroll * 0.5;
+//   // Calculate horizontal scroll distance
+//   const totalScroll = container.scrollWidth - window.innerWidth;
+// //   const limitedScroll = totalScroll * 0.5;
 
-  // Create fresh ScrollTrigger horizontal animation
-  gsap.to(container, {
+//   // Create fresh ScrollTrigger horizontal animation
+//   gsap.to(container, {
+//     x: () => -totalScroll,
+//     ease: "none",
+//     scrollTrigger: {
+//       trigger: section,
+//       start: "top top",
+//       end: () => "+=" + totalScroll,
+//       scrub: 0.1, // Changed from 1 to 0.1 for more reactive update (fixes slow scroll choppiness)
+//       pin: true,
+//       anticipatePin: 1,
+//       invalidateOnRefresh: true,
+//       fastScrollEnd: false, // Set to false to let GSAP track both fast and slow scrolls accurately
+//       preventOverlaps: true,
+//       // markers: true,
+//       onEnter: () => console.log("Entered horizontal scroll"),
+//       onLeave: () => console.log("Left horizontal scroll (stops at 50%)"),
+//       refreshPriority: 1
+//     }
+//   });
+
+//   // For improved smoothness: throttle ScrollTrigger.refresh() calls and force update on scroll as a backup
+//   ScrollTrigger.refresh();
+
+//   // Fix laggy animation if user scrolls extremely slowly:
+//   // Listen for scroll and update GSAP transform instantly if needed.
+//   let ticking = false;
+//   window.addEventListener("scroll", function() {
+//     if (!ticking) {
+//       window.requestAnimationFrame(function() {
+//         ScrollTrigger.update();
+//         ticking = false;
+//       });
+//       ticking = true;
+//     }
+//   });
+// }
+
+// window.addEventListener("load", () => {
+//   initHorizontalScroll();
+// });
+
+
+
+
+
+
+
+
+function initSection4HorizontalScroll() {
+  const section = document.querySelector('.page3');
+  const track = document.querySelector('.page3_contain');
+  if (!section || !track) return;
+
+  // Total scroll distance equals track width minus viewport width
+  const totalScroll = track.scrollWidth - window.innerWidth;
+
+  gsap.to(track, {
     x: () => -totalScroll,
-    ease: "none",
+    ease: 'none',
     scrollTrigger: {
       trigger: section,
-      start: "top top",
-      end: () => "+=" + totalScroll,
-      scrub: 0.1, // Changed from 1 to 0.1 for more reactive update (fixes slow scroll choppiness)
+      start: 'top top',
+      end: () => `+=${totalScroll}`,
+      scrub: true,
       pin: true,
       anticipatePin: 1,
       invalidateOnRefresh: true,
-      fastScrollEnd: false, // Set to false to let GSAP track both fast and slow scrolls accurately
-      preventOverlaps: true,
-      // markers: true,
-      onEnter: () => console.log("Entered horizontal scroll"),
-      onLeave: () => console.log("Left horizontal scroll (stops at 50%)"),
-      refreshPriority: 1
-    }
-  });
-
-  // For improved smoothness: throttle ScrollTrigger.refresh() calls and force update on scroll as a backup
-  ScrollTrigger.refresh();
-
-  // Fix laggy animation if user scrolls extremely slowly:
-  // Listen for scroll and update GSAP transform instantly if needed.
-  let ticking = false;
-  window.addEventListener("scroll", function() {
-    if (!ticking) {
-      window.requestAnimationFrame(function() {
-        ScrollTrigger.update();
-        ticking = false;
-      });
-      ticking = true;
-    }
+    },
   });
 }
 
-window.addEventListener("load", () => {
-  initHorizontalScroll();
-});
 
 
+initSection4HorizontalScroll();
 
 
 
