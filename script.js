@@ -388,37 +388,35 @@ gsap.from(".page1_contain_2_right p", {
 
 
 
-document.querySelectorAll('.page2 h3').forEach(function(h3) {
-    // Get the text content and trim it
-    var text = h3.textContent;
-    // Create a new HTML string with each character wrapped in a span
-    var spanned = '';
-    for (var i = 0; i < text.length; i++) {
-        // Preserve spaces
-        if (text[i] === ' ') {
-            spanned += '<span>&nbsp;</span>';
-        } else {
-            spanned += '<span class:"page2_heading_divide">' + text[i] + '</span>';
-        }
-    }
-    // Set the new HTML
-    h3.innerHTML = spanned;
-});
+// document.querySelectorAll('.page2 h3').forEach(function(h3) {
+//     // Get the text content and trim it
+//     var text = h3.textContent;
+//     // Create a new HTML string with each character wrapped in a span
+//     var spanned = '';
+//     for (var i = 0; i < text.length; i++) {
+//         // Preserve spaces
+//         if (text[i] === ' ') {
+//             spanned += '<span>&nbsp;</span>';
+//         } else {
+//             spanned += '<span class:"page2_heading_divide">' + text[i] + '</span>';
+//         }
+//     }
+//     // Set the new HTML
+//     h3.innerHTML = spanned;
+// });
 
-gsap.from(".page2  h3 span",
+gsap.from(".page2 h3",
     {
         opacity: 0,
-        y: 100,
-        x:20,
-        stagger: 0.6,
-        scale:0,
-        duration: 50,
-        ease: "bounce.out",
+        y: -200,
+       
+     
+       
         scrollTrigger: {
-            trigger: ".page2 h3",
-            start: "top 70%",
-            end:"top 40%",
-            scrub: 3,
+            trigger: ".page2",
+            start: "top 60%",
+            end:"top 50%",
+            scrub: 5,
             // markers: true, // Uncomment for debugging
 
         }
@@ -563,7 +561,7 @@ gsap.from(".page2_scroll_aniation_img1 img",{
         end:"top -40%",
         // scrub:1,
         ease:"power4.out",
-        scrub:0,
+        scrub:2,
     }
 })
 
@@ -582,7 +580,7 @@ gsap.from(".page2_scroll_aniation_img2 img",{
         // scrub:1,
         ease:"power4.out",
         // markers:true,
-        scrub:0,
+        scrub:2,
     }
 })
 
@@ -783,43 +781,44 @@ window.addEventListener('load', () => {
 
 
 
-document.querySelectorAll('.page5 h3').forEach(function(h3) {
-    // Get the text content and trim it
-    var text = h3.textContent;
-    // Create a new HTML string with each character wrapped in a span
-    var spanned = '';
-    for (var i = 0; i < text.length; i++) {
-        // Preserve spaces
-        if (text[i] === ' ') {
-            spanned += '<span>&nbsp;</span>';
-        } else {
-            spanned += '<span class:"page2_heading_divide">' + text[i] + '</span>';
-        }
-    }
-    // Set the new HTML
-    h3.innerHTML = spanned;
-});
+// document.querySelectorAll('.page5 h3').forEach(function(h3) {
+//     // Get the text content and trim it
+//     var text = h3.textContent;
+//     // Create a new HTML string with each character wrapped in a span
+//     var spanned = '';
+//     for (var i = 0; i < text.length; i++) {
+//         // Preserve spaces
+//         if (text[i] === ' ') {
+//             spanned += '<span>&nbsp;</span>';
+//         } else {
+//             spanned += '<span class:"page2_heading_divide">' + text[i] + '</span>';
+//         }
+//     }
+//     // Set the new HTML
+//     h3.innerHTML = spanned;
+// });
 
-gsap.from(".page5  h3 span",
-    {
-        opacity: 0,
-        y: 100,
-        x:20,
-        stagger: 0.6,
-        scale:0,
-        duration: 50,
-        ease: "bounce.out",
-        scrollTrigger: {
-            trigger: ".page5 h3",
-            start: "top 90%",
-            end:"top 70%",
-            scrub: 3,
-            // markers: true, // Uncomment for debugging
 
-        }
-    
-        
+gsap.from(".page5 h3",
+  {
+      opacity: 0,
+      y: -200,
+     
+   
+     
+      scrollTrigger: {
+          trigger: ".page5",
+          start: "top -50%",
+          // end:"top 50%",
+          scrub: 5,
+          markers: true, // Uncomment for debugging
+
+      }
+  
+      
 })
+ 
+
 // gsap.from(".page5_box1",
 //     {
 //         opacity: 0,

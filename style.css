@@ -698,7 +698,7 @@ html, body {
   height: 100vh;
   position: sticky;
   width: 400vw; /* 4 panels wide */
-  background: linear-gradient(150deg, #ffc002 0%, #F8981C 100%);
+  background: linear-gradient(150deg, #ffad23 0%, #F8981C 100%);
 }
 
 .panel {
@@ -1215,7 +1215,7 @@ align-items: end;
 {
     width: 100vw;
     height: 110vh;
-    background-image: url(image\ 2.png);
+    background-image: url('image (7).png');
     background-size: cover;
     /* position: fixed; */
     background-position: center;
