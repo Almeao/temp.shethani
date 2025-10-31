@@ -811,7 +811,7 @@ gsap.from(".page5 h3",
           start: "top -50%",
           // end:"top 50%",
           scrub: 5,
-          markers: true, // Uncomment for debugging
+          // markers: true, // Uncomment for debugging
 
       }
   
