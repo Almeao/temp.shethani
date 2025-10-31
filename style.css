@@ -689,6 +689,7 @@ html, body {
 .page3_contain {
   display: flex;
   height: 100vh;
+  position: sticky;
   width: 400vw; /* 4 panels wide */
   background: linear-gradient(135deg, #FFD105 0%, #F8981C 100%);
 }
