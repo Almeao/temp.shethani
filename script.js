@@ -369,7 +369,7 @@ gsap.from(".page1_contain_2_right h2 span",
  
 gsap.from(".page1_contain_2_right p", {
   opacity: 0,
-  filter: "blur(5px)",
+  // filter: "blur(5px)",
   y: 100,
   stagger: 0.6,
   // scale:0,
