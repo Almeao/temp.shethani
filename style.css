@@ -734,7 +734,7 @@ html, body {
 }
 .panel2_left img
 {
-    width: 37%;
+    width: 35%;
     height: 70%;
     position: relative;
     margin-right: 20%;
@@ -1215,15 +1215,23 @@ align-items: end;
 {
     width: 100vw;
     height: 110vh;
-    background-image: url('image (7).png');
+    /* background: url('Emfio surfaces 31-10-25-_2.mp4'); */
     background-size: cover;
     /* position: fixed; */
     background-position: center;
     background-repeat: no-repeat;
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: end;
     /* align-items: end; */
+}
+.page6 video
+{
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: auto;
 }
 .page6_main_logo
 {
@@ -1233,6 +1241,7 @@ align-items: end;
     justify-content: center;
     margin-bottom: 10%;
     align-items: center;
+    z-index: 100;
     /* background-color: #e41e2569; */
 
 }
@@ -1253,6 +1262,7 @@ align-items: end;
     justify-content: space-around;
     /* padding: 0 1% 0 1%; */
     font-weight: 100;
+    z-index: 100;
     /* align-items: end; */
     /* background-color: #E41E26; */
 }
