@@ -576,19 +576,26 @@ html, body {
 }
 .page2_scroll_aniation_img1
 {
-    top: 10%;
+    top: 0%;
     left:13%;
 }
 .page2_scroll_aniation_img2
 {
-    top: 90%;
+    top: 80%;
     left:80%;
 }
 
 .page2_scroll_aniation_img img
 {
-    width: 100%;
-    height: 100%;
+    width: 120%;
+    height: 120%;
+    object-fit: contain;
+}
+
+.page2_scroll_aniation_img2 img
+{
+    width: 70%;
+    height: 70%;
     object-fit: contain;
 }
 
@@ -691,7 +698,7 @@ html, body {
   height: 100vh;
   position: sticky;
   width: 400vw; /* 4 panels wide */
-  background: linear-gradient(135deg, #FFD105 0%, #F8981C 100%);
+  background: linear-gradient(150deg, #ffc002 0%, #F8981C 100%);
 }
 
 .panel {
@@ -756,7 +763,7 @@ html, body {
 .panel2_right p,
 .panel3_right p,
 .panel4_right p {
-    font-size: 2em;
+    font-size: 2.5em;
     font-weight: 400;
     /* text-align:; */
     line-height: 1em;
@@ -765,27 +772,27 @@ html, body {
 .panel2_right p:nth-child(3),
 .panel3_right p:nth-child(3),
 .panel4_right p:nth-child(3) {
-    word-spacing: 0.5vmax;
+    word-spacing: 0.6vmax;
 }
 .panel2_right p:nth-child(4),
 .panel3_right p:nth-child(4),
 .panel4_right p:nth-child(4) {
-    word-spacing: 0.5vmax;
+    word-spacing: 0.6vmax;
 }
 .panel2_right p:nth-child(5),
 .panel3_right p:nth-child(5),
 .panel4_right p:nth-child(5) {
-    word-spacing: 0.5vmax;
+    word-spacing: 0.6vmax;
 }
 .panel2_right p:nth-child(6),
 .panel3_right p:nth-child(6),
 .panel4_right p:nth-child(6) {
-    word-spacing: 0.5vmax;
+    word-spacing: 0.6vmax;
 }
 .panel2_right p:nth-child(7),
 .panel3_right p:nth-child(7),
 .panel4_right p:nth-child(7) {
-    word-spacing: 0.5vmax;
+    word-spacing: 0.6vmax;
 }
 
 

@@ -554,13 +554,13 @@ gsap.from(".page2  h3 span",
 
 gsap.from(".page2_scroll_aniation_img1 img",{
     // opacity:0,
-    y:200,
+    y:450,
 
     scrollTrigger:
     {
         trigger:".page2",
-        start:"top 70%",
-        end:"top top",
+        start:"top 100%",
+        end:"top -40%",
         // scrub:1,
         ease:"power4.out",
         scrub:0,
@@ -572,13 +572,13 @@ gsap.from(".page2_scroll_aniation_img1 img",{
 
 gsap.from(".page2_scroll_aniation_img2 img",{
     // opacity:0,
-    y:200,
+    y:450,
 
     scrollTrigger:
     {
         trigger:".page2_scroll_aniation_img2",
-        start:"top 90%",
-        end:"top 40%",
+        start:"top 100%",
+        end:"top -30%",
         // scrub:1,
         ease:"power4.out",
         // markers:true,
