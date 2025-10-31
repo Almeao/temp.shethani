@@ -842,41 +842,40 @@ gsap.from(".page5 h3",
 
 // Move the Swiper pagination below the swiper wrapper after initialization
 var swiper = new Swiper(".mySwiper", {
-    effect: "coverflow",
-    grabCursor: true,
-    centeredSlides: true,
-    slidesPerView: "auto",
-    loop: true, // Enable looping
-    autoplay: {
-      delay: 2000, // Auto-slide every 2 seconds
-      disableOnInteraction: false, // Keep autoplay even after user swipes
-    },
-    speed: 200, // Add speed for transition duration (ms)
-    coverflowEffect: {
-      rotate: 0,
-      stretch: 50,
-      depth: 100,
-      modifier: 2,
-      slideShadows: true,
-    },
-    pagination: {
-      el: ".swiper-pagination",
-      dynamicBullets: true,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-    // Add easing for smooth animation
-    // Swiper uses CSS transitions for most effects, set custom easing:
-    on: {
-      setTransition: function(swiper, transition) {
-        let slides = swiper.slides;
-        for(let i=0; i<slides.length; i++) {
-          slides[i].style.transitionTimingFunction = 'cubic-bezier(0.36,0.66,0.04,1)'; // easeOutCubic like
-        }
+  effect: "coverflow",
+  grabCursor: true,
+  centeredSlides: true,
+  slidesPerView: "auto",
+  loop: true,
+  autoplay: {
+    delay: 2500, // slightly longer for a more relaxed experience
+    disableOnInteraction: false,
+  },
+  speed: 1400, // slow down transition for smoothness
+  coverflowEffect: {
+    rotate: 0,
+    stretch: 50,
+    depth: 300,
+    modifier: 1,
+    slideShadows: true,
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    dynamicBullets: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  // Enforce a very smooth easing to Swiper slides
+  on: {
+    setTransition: function(swiper, transition) {
+      let slides = swiper.slides;
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.transitionTimingFunction = 'cubic-bezier(0.22, 1, 0.36, 1)'; // very soft easeOut
       }
     }
+  }
 });
 
 // After Swiper initializes, move the pagination below the swiper wrapper
