@@ -3,6 +3,11 @@
     src: url('Salmond Font/Salmond Medium.otf');
 
 }
+@font-face {
+    font-family: font-1-light;
+    src: url('Salmond Font/Salmond Light.otf');
+
+}
 
 @font-face {
     font-family: font-2;
@@ -1033,8 +1038,8 @@ body {
 }
 
 .product_detail_right h3 {
-    font-size: 5.9em;
-    line-height: 80px;
+    font-size: 5.5em;
+    line-height: 83px;
 }
 
 .product_detail_right h3:nth-child(1) {
@@ -1042,16 +1047,17 @@ body {
 }
 
 .product_detail_right p {
-    font-size: 1.55em;
+    font-size: 1.50em;
     font-weight: 100;
-    line-height: 0;
+    line-height: 20px;
+    font-family: 'font-1-light';
 }
 
 .product_detail_right_inner {
-    width: 60%;
+    width: 55%;
     height: auto;
     border: 3px solid #F8981C;
-    margin-top: 3%;
+    margin-top: 2%;
     padding: 2% 2%;
     /* border-radius: 10px; */
 }
@@ -1062,24 +1068,32 @@ body {
     display: flex;
     /* font-weight: 100; */
     justify-content: space-between;
+    /* border-bottom: 2px solid #54545463; */
 
 }
 .product_detail_right_inner span
 {
     font-weight: 900;
+    font-family: 'font-1';
+}
+.product_detail_right_inner p:nth-child(8)
+{
+    border-bottom: 0px solid #54545463;
+
 }
 
 
 
 
 .product_detail_right h6 {
-    font-size: 1.8em;
+    font-size: 2em;
     font-weight: 100;
     background: linear-gradient(130deg, #FFD105 0%, #ffaa18 60%);
     color: #fff;
     border-radius: 5px;
     margin-top: 3%;
-    padding: 1% 1%;
+    padding: 1% 2%;
+    font-family: 'font-1-light';
 
 }
 
