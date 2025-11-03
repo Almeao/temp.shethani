@@ -377,7 +377,7 @@ gsap.from(".page1_contain_2_right p", {
   scrollTrigger: {
     trigger: ".page1_contain_2",
     start: "top 30%",
-    end: "top top",
+    end: "top 10%",
  
     scrub: 5
   }
@@ -725,48 +725,54 @@ initSection4HorizontalScroll();
 // Fix GSAP animation to trigger correctly when .page4 reaches top
 
 function initPage4MaskAnimation() {
+  const page4_inner = document.querySelector('.page4_inner');
   const page4 = document.querySelector('.page4');
-
-  if (!page4) return;
+  if (!page4_inner || !page4) return;
 
   // Prevent double initialization
-  if (page4.dataset.maskAnimInit === '1') return;
-  page4.dataset.maskAnimInit = '1';
+  if (page4_inner.dataset.maskAnimInit === '1') return;
+  page4_inner.dataset.maskAnimInit = '1';
 
-  // Initial mask size height (matches initial CSS)
+  // Initial mask height (matches initial CSS)
   const initialMaskHeight = 430;
-  // Final mask size height (increase, but not overly drastic)
-  // For a visible but more modest mask reveal, pick a value that's noticeably larger, but not extreme
-  const finalMaskHeight = 500; // was 1800, now more subtle
+  // Final mask height (big reveal)
+  const finalMaskHeight = 5000;
 
   // Set initial mask size using GSAP
-  gsap.set(page4, {
+  gsap.set(page4_inner, {
     WebkitMaskSize: `auto ${initialMaskHeight}px`,
     maskSize: `auto ${initialMaskHeight}px`,
   });
 
-  // Animate only the mask height as you scroll through .page4
-  gsap.to(page4, {
-    WebkitMaskSize: () => `auto ${finalMaskHeight}vw`,
+  // Calculate a slightly SHORTER scroll distance for the animation end, for an earlier reveal
+  const getAnimationEnd = () => {
+    const page4Height = page4.offsetHeight;
+    const viewportHeight = window.innerHeight;
+    // Reduce end point by 18% for a little bit shorter scroll reveal
+    const scrollEnd = Math.max(0, page4Height - viewportHeight) * 0;
+    return `+=${scrollEnd > 0 ? scrollEnd : page4Height * 0.40}px`;
+  };
+
+  // Animate only the mask height as you scroll through .page4, DECREASE speed by lowering scrub value
+  gsap.to(page4_inner, {
+    WebkitMaskSize: () => `auto ${finalMaskHeight}px`,
     maskSize: () => `auto ${finalMaskHeight}px`,
-    // ease: 'power4.out',
-    // stagger:3,
-    ease:"power1.out",
-    duration:100,
+    ease: "power2.out", // Slightly faster ease
     scrollTrigger: {
-      trigger: page4,
+      trigger: ".page4",
       start: 'top top',
-      end: '+=150%',
-      scrub: true,
+      end: getAnimationEnd,
+      scrub: 0.6, // Decreased scrub from true to 0.6 for faster (less smooth, quicker) animation response
       pin: true,
-      ease:"none",
       anticipatePin: 1,
       invalidateOnRefresh: true,
-      // markers: true, 
+      // markers: true,
     }
   });
 
-  // Optional: Refresh ScrollTrigger for accurate pinning
+  window.addEventListener('resize', () => {
+    ScrollTrigger.refresh();
+  });
   ScrollTrigger.refresh();
 }
 
@@ -802,14 +808,14 @@ window.addEventListener('load', () => {
 gsap.from(".page5 h3",
   {
       opacity: 0,
-      y: -200,
+      y: -100,
      
    
      
       scrollTrigger: {
           trigger: ".page5",
-          start: "top -50%",
-          // end:"top 50%",
+          start: "top 50%",
+          end:"top top",
           scrub: 5,
           // markers: true, // Uncomment for debugging
 
