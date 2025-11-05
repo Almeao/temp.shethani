@@ -44,88 +44,113 @@ var lodder = gsap.timeline();
 
 
 
-const Loader = document.querySelector('.lodder span'); // ensure this selector matches your DOM
-const counter = { val: 0 };
+// const Loader = document.querySelector('.lodder span'); // ensure this selector matches your DOM
+// const counter = { val: 0 };
 
-lodder.to(counter, {
-    val: 100,
+// lodder.to(counter, {
+//     val: 100,
     
-    duration: 6,
-    ease: "power4.out",
-    onUpdate: () => {
-        gsap.to(Loader, {
-            stagger:0.6,
-            // ease: "power4.out",
+//     duration: 6,
+//     ease: "power4.out",
+//     onUpdate: () => {
+//         gsap.to(Loader, {
+//             stagger:0.6,
+//             // ease: "power4.out",
             
-            duration:4,
-        });
+//             duration:4,
+//         });
         
-        if (Loader) Loader.innerHTML = Math.floor(counter.val) ;
-        gsap.set(".lodder_progress", { width: counter.val + "%" });
-    },
+//         if (Loader) Loader.innerHTML = Math.floor(counter.val) ;
+//         gsap.set(".lodder_progress", { width: counter.val + "%" });
+//     },
    
-},"lodder_progress"
-);
+// },"lodder_progress"
+// );
 
-lodder.to(".lodder_progress img", {
-    opacity:0,
-    duration:1,
-    ease: "power2.inOut",
-},"lodder_span_and_progress_image_hind"
-)
-lodder.to(".lodder span",{
-    y:30,
-    opacity:0,
-    duration:1,
-    ease: "power2.inOut",
-},"lodder_span_and_progress_image_hind"
-)
-
-
+// lodder.to(".lodder_progress img", {
+//     opacity:0,
+//     duration:1,
+//     ease: "power2.inOut",
+// },"lodder_span_and_progress_image_hind"
+// )
+// lodder.to(".lodder span",{
+//     y:30,
+//     opacity:0,
+//     duration:1,
+//     ease: "power2.inOut",
+// },"lodder_span_and_progress_image_hind"
+// )
 
 
 
 
-// Step 1: Animate background from white to transparent left to right
-lodder.to(".lodder_progress", {
-    background: "linear-gradient(to right, white 0%, transparent 100%)",
-    duration: 0.5,
-    ease: "power2.inOut",
-    onStart: () => {
-        // Ensure initial background is white
-        gsap.set(".lodder_progress", { background: "white" });
-    }
-})
-
-// Step 2: Animate background to solid white left to right
-lodder.to(".lodder_progress", {
-    background: "linear-gradient(to right, white 100%, white 100%)",
-    duration: 0.5,
-    ease: "power2.inOut",
-})
 
 
+// // Step 1: Animate background from white to transparent left to right
+// lodder.to(".lodder_progress", {
+//     background: "linear-gradient(to right, white 0%, transparent 100%)",
+//     duration: 0.5,
+//     ease: "power2.inOut",
+//     onStart: () => {
+//         // Ensure initial background is white
+//         gsap.set(".lodder_progress", { background: "white" });
+//     }
+// })
 
-// Step 3: Animate background from white to transparent left to right again
-lodder.to(".lodder_progress", {
-    background: "linear-gradient(to right, transparent 0%, white 100%)",
-    duration: 1,
-    opacity:0,
-    x:"100%",
-    ease: "power2.inOut",
-},"lodder_logo&hr&progress_at sametime"
-)
+// // Step 2: Animate background to solid white left to right
+// lodder.to(".lodder_progress", {
+//     background: "linear-gradient(to right, white 100%, white 100%)",
+//     duration: 0.5,
+//     ease: "power2.inOut",
+// })
 
-lodder.to(".lodder_logo", {
-    y: "-450%",
-    scale:0.5,
-    duration: 1,
-    ease: "power2.inOut",
-},"lodder_logo&hr&progress_at sametime"
-)
+
+
+// // Step 3: Animate background from white to transparent left to right again
+// lodder.to(".lodder_progress", {
+//     background: "linear-gradient(to right, transparent 0%, white 100%)",
+//     duration: 1,
+//     opacity:0,
+//     x:"100%",
+//     ease: "power2.inOut",
+// },"lodder_logo&hr&progress_at sametime"
+// )
+
+
+
+
+
+
+
+
+
+// lodder.to(".lodder_logo", {
+//     y: "-450%",
+//     scale:0.5,
+//     duration: 1,
+//     ease: "power2.inOut",
+// },"lodder_logo&hr&progress_at sametime"
+// )
+
+
+
+
+lodder.to(".lodder video", {
+  opacity: 1,
+  duration: 0,
+  delay: 0 // ensure video starts visible
+});
+lodder.to(".lodder", {
+  duration: 0.5,
+  // scale:0,
+  // delay: 2, // keep video fully visible for 2 seconds
+  opacity: 0,
+  
+  // ease: "power4.inOut"
+});
 lodder.to(".lodder", {
     opacity:0,
-    duration:1,
+    duration:0.5,
     ease: "power2.inOut",
 });
 lodder.to(".lodder", {
@@ -200,6 +225,178 @@ lodder.from(".page1_contain_oil-img_container img",{
     ease: "power2.inOut",
 
 },"page1_contain")
+
+
+
+
+
+// The reason the second animation might not be working is likely due to how the GSAP timeline (`lodder_mobail`) is being reused across matchMedia, and potentially the fact that the timeline is created outside of the matchMedia context.
+// Another possible reason: the opacity of ".lodder_mobail" may already be set to 0 or is being hidden by CSS elsewhere, so animating opacity would have no visible effect.
+// Also, since both animations are in the same timeline sequentially with no delay, the `.from()` instantly sets opacity to 1 (with 0 duration) and then the `.to()` animates to opacity 0 (over 0.5s) — but if the initial state is already at opacity 1, you may not actually see any visible transition depending on when the timeline plays.
+// To ensure both work as expected, declare the timeline inside the matchMedia scope, and check initial opacity in your CSS (should not be 0).
+// Here's a more robust pattern for what you probably want:
+
+gsap.registerPlugin(ScrollTrigger);
+
+let mm = gsap.matchMedia();
+
+mm.add("(max-width: 480px)", () => {
+  // It's better to create the timeline INSIDE the matchMedia function
+  let lodder_mobail = gsap.timeline();
+
+  // Set initial opacity immediately (optional/failsafe, for safety)
+  gsap.set(".lodder_mobail, .lodder_mobail video", {opacity: 1});
+
+  lodder_mobail.from(".lodder_mobail video", {
+    opacity: 1,         // Already at 1, but if not, it'll jump to 1 instantly
+    duration: 0,
+    delay: 0 
+  });
+
+  lodder_mobail.to(".lodder_mobail", {
+    duration: 0.5,
+    // scale:0,
+    // delay: 2, // keep video fully visible for 2 seconds
+    opacity: 0,
+    // ease: "power4.inOut"
+  }, "+=2"); // keep loader visible for 2 seconds before fading out
+
+  lodder_mobail.from(".nav_main_logo_mobail",{
+    y:"-100%",
+    scale:0.7,
+    duration:1,
+    ease: "power2.inOut",
+})
+
+lodder_mobail.from(".page1_bg_text_mobail",{
+  opacity:0,
+  scale:30,
+
+  duration:1,
+  ease: "power2.inOut",
+
+}
+)
+
+
+
+
+lodder_mobail.to(".page1_bg_text_mobail",{
+  lineHeight: "11vmax",
+  duration:1,
+  scrub:5,
+  ease: "elastic.out(1,1)",
+})
+
+
+
+lodder_mobail.from(".page1_containe_oil-img_left_mobail",{
+  x:"-200%",
+  duration:2,
+  ease: "power4.inOut",
+
+},"page1_contain"
+)
+
+
+
+
+lodder_mobail.from(".page1_containe_oil-img_right_mobail",{
+  x:"100%",
+  duration:2,
+  ease: "power4.inOut",
+
+},"page1_contain")
+
+
+
+
+lodder_mobail.from(".page1_contain_oil-img_container_mobail img",{
+  rotate:"90deg",
+
+  y:"-90%",
+  x:200,
+  scale:1.3,
+  duration:1.5,
+  ease: "power2.inOut",
+
+},"page1_contain")
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// lodder.from(".page1_bg_text_mobail",{
+//     opacity:0,
+//     scale:30,
+ 
+//     duration:1,
+//     ease: "power2.inOut",
+
+// }
+// )
+
+
+
+
+// lodder.to(".page1_bg_text_mobail",{
+//     lineHeight: "10vmax",
+//     duration:1,
+//     scrub:5,
+//     ease: "elastic.out(1,1)",
+// })
+
+// lodder.from(".page1_containe_oil-img_left_mobail",{
+//     x:"-100%",
+//     duration:2,
+//     ease: "power4.inOut",
+
+// },"page1_contain"
+// )
+// lodder.from(".page1_containe_oil-img_right_mobail",{
+//     x:"100%",
+//     duration:2,
+//     ease: "power4.inOut",
+
+// },"page1_contain")
+
+
+
+
+// lodder.from(".page1_contain_oil-img_container_mobail img",{
+//     rotate:"90deg",
+
+//     y:"-90%",
+//     x:200,
+//     scale:1.3,
+//     duration:1.5,
+//     ease: "power2.inOut",
+
+// },"page1_contain")
 
 
 
@@ -847,60 +1044,60 @@ gsap.from(".page5 h3",
 // })
 
 // Move the Swiper pagination below the swiper wrapper after initialization
-var swiper = new Swiper(".mySwiper", {
-  effect: "coverflow",
-  grabCursor: true,
-  centeredSlides: true,
-  slidesPerView: "auto",
-  loop: true,
-  autoplay: {
-    delay: 2500, // slightly longer for a more relaxed experience
-    disableOnInteraction: false,
-  },
-  speed: 1400, // slow down transition for smoothness
-  coverflowEffect: {
-    rotate: 0,
-    stretch: 50,
-    depth: 300,
-    modifier: 1,
-    slideShadows: true,
-  },
-  pagination: {
-    el: ".swiper-pagination",
-    dynamicBullets: true,
-  },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-  // Enforce a very smooth easing to Swiper slides
-  on: {
-    setTransition: function(swiper, transition) {
-      let slides = swiper.slides;
-      for (let i = 0; i < slides.length; i++) {
-        slides[i].style.transitionTimingFunction = 'cubic-bezier(0.22, 1, 0.36, 1)'; // very soft easeOut
-      }
-    }
-  }
-});
+// var swiper = new Swiper(".mySwiper", {
+//   effect: "coverflow",
+//   grabCursor: true,
+//   centeredSlides: true,
+//   slidesPerView: "auto",
+//   loop: true,
+//   autoplay: {
+//     delay: 2500, // slightly longer for a more relaxed experience
+//     disableOnInteraction: false,
+//   },
+//   speed: 1400, // slow down transition for smoothness
+//   coverflowEffect: {
+//     rotate: 0,
+//     stretch: 50,
+//     depth: 300,
+//     modifier: 1,
+//     slideShadows: true,
+//   },
+//   pagination: {
+//     el: ".swiper-pagination",
+//     dynamicBullets: true,
+//   },
+//   navigation: {
+//     nextEl: ".swiper-button-next",
+//     prevEl: ".swiper-button-prev",
+//   },
+//   // Enforce a very smooth easing to Swiper slides
+//   on: {
+//     setTransition: function(swiper, transition) {
+//       let slides = swiper.slides;
+//       for (let i = 0; i < slides.length; i++) {
+//         slides[i].style.transitionTimingFunction = 'cubic-bezier(0.22, 1, 0.36, 1)'; // very soft easeOut
+//       }
+//     }
+//   }
+// });
 
-// After Swiper initializes, move the pagination below the swiper wrapper
-document.addEventListener("DOMContentLoaded", function() {
-  var swiperWrapper = document.querySelector('.mySwiper');
-  var swiperPagination = document.querySelector('.swiper-pagination');
-  if (swiperWrapper && swiperPagination) {
-    swiperWrapper.parentNode.insertBefore(swiperPagination, swiperWrapper.nextSibling);
-  }
-});
-// Fix GSAP mask animation: slow down mask reveal & ensure smooth scroll animation
-// Re-initialize the animation after DOMContentLoaded to ensure ScrollTrigger works as intended
+// // After Swiper initializes, move the pagination below the swiper wrapper
+// document.addEventListener("DOMContentLoaded", function() {
+//   var swiperWrapper = document.querySelector('.mySwiper');
+//   var swiperPagination = document.querySelector('.swiper-pagination');
+//   if (swiperWrapper && swiperPagination) {
+//     swiperWrapper.parentNode.insertBefore(swiperPagination, swiperWrapper.nextSibling);
+//   }
+// });
+// // Fix GSAP mask animation: slow down mask reveal & ensure smooth scroll animation
+// // Re-initialize the animation after DOMContentLoaded to ensure ScrollTrigger works as intended
 
-document.addEventListener("DOMContentLoaded", function() {
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-    // Remove previous ScrollTriggers for .page4 to avoid stacking on refresh
-    ScrollTrigger.getAll().forEach(trigger => {
-      if (trigger.trigger && trigger.trigger.classList && trigger.trigger.classList.contains('page4')) trigger.kill();
-    });
-    initPage4MaskAnimation();
-  }
-});
+// document.addEventListener("DOMContentLoaded", function() {
+//   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+//     // Remove previous ScrollTriggers for .page4 to avoid stacking on refresh
+//     ScrollTrigger.getAll().forEach(trigger => {
+//       if (trigger.trigger && trigger.trigger.classList && trigger.trigger.classList.contains('page4')) trigger.kill();
+//     });
+//     initPage4MaskAnimation();
+//   }
+// });
