@@ -228,13 +228,10 @@ lodder.from(".page1_contain_oil-img_container img",{
 
 
 
+//=========================================================
+//================== mobaile lodder animation =============
+//=========================================================
 
-
-// The reason the second animation might not be working is likely due to how the GSAP timeline (`lodder_mobail`) is being reused across matchMedia, and potentially the fact that the timeline is created outside of the matchMedia context.
-// Another possible reason: the opacity of ".lodder_mobail" may already be set to 0 or is being hidden by CSS elsewhere, so animating opacity would have no visible effect.
-// Also, since both animations are in the same timeline sequentially with no delay, the `.from()` instantly sets opacity to 1 (with 0 duration) and then the `.to()` animates to opacity 0 (over 0.5s) — but if the initial state is already at opacity 1, you may not actually see any visible transition depending on when the timeline plays.
-// To ensure both work as expected, declare the timeline inside the matchMedia scope, and check initial opacity in your CSS (should not be 0).
-// Here's a more robust pattern for what you probably want:
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -262,7 +259,7 @@ mm.add("(max-width: 480px)", () => {
   }, "+=2"); // keep loader visible for 2 seconds before fading out
 
   lodder_mobail.from(".nav_main_logo_mobail",{
-    y:"-100%",
+    y:"-200%",
     scale:0.7,
     duration:1,
     ease: "power2.inOut",
@@ -272,7 +269,7 @@ lodder_mobail.from(".page1_bg_text_mobail",{
   opacity:0,
   scale:30,
 
-  duration:1,
+  duration:0.5,
   ease: "power2.inOut",
 
 }
@@ -292,10 +289,10 @@ lodder_mobail.to(".page1_bg_text_mobail",{
 
 lodder_mobail.from(".page1_containe_oil-img_left_mobail",{
   x:"-200%",
-  duration:2,
+  duration:1,
   ease: "power4.inOut",
 
-},"page1_contain"
+},"page1_contain_mobail"
 )
 
 
@@ -303,10 +300,10 @@ lodder_mobail.from(".page1_containe_oil-img_left_mobail",{
 
 lodder_mobail.from(".page1_containe_oil-img_right_mobail",{
   x:"100%",
-  duration:2,
+  duration:1,
   ease: "power4.inOut",
 
-},"page1_contain")
+},"page1_contain_mobail")
 
 
 
@@ -317,14 +314,106 @@ lodder_mobail.from(".page1_contain_oil-img_container_mobail img",{
   y:"-90%",
   x:200,
   scale:1.3,
-  duration:1.5,
+  duration:1,
   ease: "power2.inOut",
 
-},"page1_contain")
+},"page1_contain_mobail")
 
 
 
 });
+
+
+
+// gsap.registerPlugin(ScrollTrigger);
+
+// let mm600 = gsap.matchMedia();
+
+// mm600.add("(max-width: 600px)", () => {
+//   // It's better to create the timeline INSIDE the matchMedia function
+//   let lodder_mobail_600 = gsap.timeline();
+
+//   // Set initial opacity immediately (optional/failsafe, for safety)
+//   gsap.set(".lodder_mobail, .lodder_mobail video", {opacity: 1});
+
+//   lodder_mobail_600.from(".lodder_mobail video", {
+//     opacity: 1,         // Already at 1, but if not, it'll jump to 1 instantly
+//     duration: 0,
+//     delay: 0 
+//   });
+
+//   lodder_mobail_600.to(".lodder_mobail", {
+//     duration: 0.5,
+//     // scale:0,
+//     // delay: 2, // keep video fully visible for 2 seconds
+//     opacity: 0,
+//     // ease: "power4.inOut"
+//   }, "+=2"); // keep loader visible for 2 seconds before fading out
+
+//   lodder_mobail_600.from(".nav_main_logo_mobail",{
+//     y:"-200%",
+//     scale:0.7,
+//     duration:1,
+//     ease: "power2.inOut",
+// })
+
+// lodder_mobail_600.from(".page1_bg_text_mobail",{
+//   opacity:0,
+//   scale:30,
+
+//   duration:0.5,
+//   ease: "power2.inOut",
+
+// }
+// )
+
+
+
+
+// lodder_mobail_600.to(".page1_bg_text_mobail",{
+//   lineHeight: "11vmax",
+//   duration:1,
+//   scrub:5,
+//   ease: "elastic.out(1,1)",
+// })
+
+
+
+// lodder_mobail_600.from(".page1_containe_oil-img_left_mobail",{
+//   x:"-200%",
+//   duration:1,
+//   ease: "power4.inOut",
+
+// },"page1_contain_mobail"
+// )
+
+
+
+
+// lodder_mobail_600.from(".page1_containe_oil-img_right_mobail",{
+//   x:"100%",
+//   duration:1,
+//   ease: "power4.inOut",
+
+// },"page1_contain_mobail")
+
+
+
+
+// lodder_mobail_600.from(".page1_contain_oil-img_container_mobail img",{
+//   rotate:"90deg",
+
+//   y:"-90%",
+//   x:200,
+//   scale:1.3,
+//   duration:1,
+//   ease: "power2.inOut",
+
+// },"page1_contain_mobail")
+
+
+
+// });
 
 
 
@@ -523,6 +612,89 @@ gsap.from(".page1_contain_2_right h3", {
   }
   }
 )
+
+
+
+
+//===========================================================
+//============= page1 image scroller fro mobail =============
+//===========================================================
+const page1_imagescroller_mobail = gsap.timeline({
+  scrollTrigger: {
+      trigger: ".page1_contain_oil-img_container_mobail",
+      scroller: "body",
+      start: "top top",
+      end: "top -100%",
+      scrub: 0,
+      markers:true,
+
+  }
+})
+
+
+
+
+
+
+
+page1_imagescroller_mobail.to(".page1_contain_oil-img_container_mobail", 
+
+  {
+
+  y: "370%",
+  x: "10%",
+  stagger: 0.2,
+  rotate: "10deg",
+  scale:3.5,
+  pin:true,
+ 
+});
+
+
+
+
+gsap.from(".page1_contain_2_left_img_oil_mobail", {
+  scale: 0,
+  duration: 10,
+  ease: "none",
+  scrollTrigger: {
+      trigger: ".page1_contain_2_mobail",
+      start: "top 30%",
+      end: "top 25%",
+      // markers: true,
+      // pin:true,
+      scrub: 3, // This makes the animation reverse on scroll up
+  }
+});
+
+gsap.from(".page1_contain_2_left_img_pinuts_mobail", {
+  scale: 0,
+  duration: 10,
+  ease: "none",
+  delay:1,
+  scrollTrigger: {
+      trigger: ".page1_contain_2_mobail",
+      start: "top 35%",
+      end: "top 30%",
+      // markers: true,
+      scrub: 3, // This makes the animation reverse on scroll up
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 document.querySelectorAll('.page1_contain_2_right h2').forEach(function(h2) {
