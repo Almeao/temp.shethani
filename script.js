@@ -623,7 +623,7 @@ const page1_imagescroller_mobail = gsap.timeline({
   scrollTrigger: {
       trigger: ".page1_contain_oil-img_container_mobail",
       scroller: "body",
-      start: "top top",
+      start: "top -30%",
       end: "top -100%",
       scrub: 0,
       markers:true,
@@ -641,7 +641,7 @@ page1_imagescroller_mobail.to(".page1_contain_oil-img_container_mobail",
 
   {
 
-  y: "370%",
+  y: "90vh",
   x: "10%",
   stagger: 0.2,
   rotate: "10deg",
