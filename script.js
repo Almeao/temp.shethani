@@ -40,6 +40,7 @@ lenis.on('scroll', ScrollTrigger.update);
 
 
 
+
 var lodder = gsap.timeline();
 
 
@@ -626,7 +627,7 @@ const page1_imagescroller_mobail = gsap.timeline({
       start: "top -30%",
       end: "top -100%",
       scrub: 0,
-      markers:true,
+      // markers:true,
 
   }
 })
