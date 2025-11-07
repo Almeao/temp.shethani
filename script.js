@@ -1,21 +1,16 @@
 gsap.registerPlugin(ScrollTrigger);
 
-// Detect mobile devices (basic check)
-function isMobile() {
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-}
 
-// Initialize Lenis for smooth scrolling, enabling for both desktop and mobile
+// Initialize Lenis for smooth scrolling
 const lenis = new Lenis({
   lerp: 0, // Adjust for smoothness (0.04 - 0.2 is typical)
   smooth: true,
-  smoothTouch: true, // Enable smooth touch scrolling for mobile devices
   easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
   wheelMultiplier: 1.5,
   direction: 'vertical',
   gestureDirection: 'vertical',
   mouseMultiplier: 1,
-  touchMultiplier: 1,
+  touchMultiplier: 2,
   infinite: false,
 });
 
@@ -29,6 +24,10 @@ requestAnimationFrame(raf);
 
 // Optional: update ScrollTrigger on Lenis scroll
 lenis.on('scroll', ScrollTrigger.update);
+
+
+
+
 
 
 
@@ -139,7 +138,7 @@ var lodder = gsap.timeline();
 
 lodder.to(".lodder video", {
   opacity: 1,
-  duration: 0,
+  duration: 2,
   delay: 0 // ensure video starts visible
 });
 lodder.to(".lodder", {
