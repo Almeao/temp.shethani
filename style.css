@@ -2329,7 +2329,7 @@ body::-webkit-scrollbar {
     .panel_mobail {
         /* flex: 0 0 100vw; */
         width: 100vw;
-        height: 90vh;
+        height: 80vh;
         display: flex;
         flex-direction: column;
         flex-direction: column;
