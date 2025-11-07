@@ -141,14 +141,7 @@ lodder.to(".lodder video", {
   duration: 2,
   delay: 0 // ensure video starts visible
 });
-// lodder.to(".lodder", {
-//   duration: 0.5,
-//   // scale:0,
-//   // delay: 2, // keep video fully visible for 2 seconds
-//   opacity: 0,
-  
-//   // ease: "power4.inOut"
-// });
+
 lodder.to(".lodder", {
     opacity:0,
     duration:0.5,
@@ -168,15 +161,6 @@ lodder.from(".nav_main_logo",{
 
 
 
-
-// lodder.from(".nav_option hr",{
-//     x:-100,
-//     opacity:0,
-//     scrub:5,
-//     stagger:0.2,
-//     ease: "bounce.out",
-// },
-// )
 
 
 lodder.from(".page1_bg_text",{
