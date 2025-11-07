@@ -2083,7 +2083,7 @@ body::-webkit-scrollbar {
     }
 
     .page2_contain_box4 {
-        grid-row: 4 / span 2;
+        grid-row: 6 / span 2;
         /* appear later in the grid */
         grid-column: 1 / 2;
         height: 100%;
@@ -2121,8 +2121,18 @@ body::-webkit-scrollbar {
         overflow: hidden;
         /* Prevent image overflow which can break box sizing */
     }
+/* 
 
-
+ 
+    .box1 { order: 1; }
+    .box2 { order: 2; }
+    .box3 { order: 3; }
+    .box4 { order: 6; }
+    .box5 { order: 5; }
+    .box6 { order: 6; }
+    .box7 { order: 7; }
+     */
+    
 
 
 
@@ -2319,7 +2329,7 @@ body::-webkit-scrollbar {
     .panel_mobail {
         /* flex: 0 0 100vw; */
         width: 100vw;
-        height: 100vh;
+        height: 90vh;
         display: flex;
         flex-direction: column;
         flex-direction: column;
