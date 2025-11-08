@@ -212,6 +212,58 @@ lodder.from(".page1_contain_oil-img_container img",{
 },"page1_contain")
 
 
+// Make the image inside .page1_contain_oil-img_container follow the cursor with a max 20px offset from its center
+
+const container = document.querySelector(".page1_contain_oil-img_container");
+const img = container ? container.querySelector("img") : null;
+
+// Only run animation if container and img exist
+if (container && img) {
+    let isHovering = false;
+
+    container.addEventListener("mouseenter", function(e) {
+        isHovering = true;
+        img.style.transition = "transform 0.5s cubic-bezier(.36,1.21,.58,.82)";
+        img.style.transform = "scale(1.05)";
+    });
+
+    container.addEventListener("mousemove", function(e) {
+        if (!isHovering) return;
+
+        const rect = container.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        let dx = e.clientX - centerX;
+        let dy = e.clientY - centerY;
+
+        // Limit the movement to max 10px in any direction (circular boundary)
+        const maxMove = 10;
+        let dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist > maxMove) {
+            dx = dx * maxMove / dist;
+            dy = dy * maxMove / dist;
+        }
+
+        // Move the image with transform and scale it up to 1.7 on hover
+        img.style.transition = "transform 0.5s cubic-bezier(.36,1.21,.58,.82)";
+        img.style.transform = `translate(${dx}px, ${dy}px) scale(1.05)`;
+    });
+
+    container.addEventListener("mouseleave", function() {
+        isHovering = false;
+        img.style.transition = "transform 0.5s cubic-bezier(.36,1.21,.58,.82)";
+        img.style.transform = "translate(0px, 0px) scale(1)";
+    });
+}
+
+
+
+
+
+
+
+
 
 //=========================================================
 //================== mobaile lodder animation =============
@@ -1060,6 +1112,65 @@ initSection4HorizontalScroll();
 
 
 
+gsap.from(".product_detail_left img",{
+  x: "-100",
+  opacity:0,
+  scrollTrigger:{
+    trigger:".product_detail_left",
+    start:"top 50%",
+    end:"top 30%",
+    scrub:5,
+  }
+})
+
+gsap.from(".product_detail_right h3",{
+  y: "20",
+  opacity:0,
+  stagger:0.2,
+  scrollTrigger:{
+    trigger:".product_detail_right",
+    start:"top 60%",
+    end:"top 40%",
+    scrub:5,
+  }
+})
+gsap.from(".product_detail_right_inner p",{
+  x: "200",
+  opacity:0,
+  stagger:0.2,
+
+  scrollTrigger:{
+    trigger:".product_detail_right",
+    start:"top 60%",
+    end:"top 50%",
+    ease: "circ.out",
+    scrub:3,
+  }
+})
+
+
+// gsap.from(".product_detail_right h6",{
+//   // y: "-50",
+//   opacity:0,
+//   scale:0.5,
+//   // stagger:0.2,
+//   scrollTrigger:{
+//     trigger:".product_detail_right",
+//     start:"top 20%",
+//     end:"top 10%",
+//     scrub:2,
+//   }
+// })
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1258,3 +1369,7 @@ gsap.from(".page5 h3",
 //     initPage4MaskAnimation();
 //   }
 // });
+
+
+
+
