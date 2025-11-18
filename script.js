@@ -19,6 +19,19 @@ gsap.ticker.lagSmoothing(0);
 
 
 
+// Wait for full page & all assets (images, video) to load, then start loader timeline animation
+window.addEventListener('load', function() {
+  // At this point, all HTML, CSS, JS & media assets are loaded
+  lodder.play(); // lodder is defined below, assumed to be initially paused
+  
+  // If the timeline isn't paused by default, consider: 
+  // If you want the animation to play only after load, define it as paused and then play here
+  // Example adjustment (uncomment and put in timeline definition if needed):
+  // var lodder = gsap.timeline({ paused: true });
+});
+//
+// (If your lodder timeline is NOT paused by default, you may want to set it to paused:true where it's created.)
+//
 
 
 
