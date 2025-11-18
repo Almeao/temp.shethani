@@ -2,81 +2,32 @@
 // --- Stable Lenis + ScrollTrigger integration (replace previous Lenis/raf code) ---
 gsap.registerPlugin(ScrollTrigger);
 
-// create Lenis once
-const lenis = new Lenis({
-  lerp: 0.08,
-  smooth: true,
-  wheelMultiplier: 1.2,
-  direction: 'vertical',
-  gestureDirection: 'vertical',
-  infinite: false,
-});
+const lenis = new Lenis();
 
-// use the browser scrollingElement (fallback to documentElement)
-const scrollerEl = document.scrollingElement || document.documentElement;
+// Ensure ScrollTrigger updates on Lenis scroll
+// The original code only listens to Lenis for ScrollTrigger updates, 
+// but does not drive frame updates or actually scroll the content.
+// To fix page not scrolling, Lenis needs to be updated continuously on each animation frame.
 
-// Proxy ScrollTrigger to Lenis-driven scroller
-ScrollTrigger.scrollerProxy(scrollerEl, {
-  scrollTop(value) {
-    if (arguments.length) {
-      // immediate jump so ScrollTrigger stays in sync
-      if (typeof lenis.scrollTo === 'function') lenis.scrollTo(value, { immediate: true });
-      else window.scrollTo(0, value);
-      return;
-    }
-    // prefer Lenis virtual value when present
-    return (lenis && lenis.scroll && typeof lenis.scroll.y === 'number') ? lenis.scroll.y : window.scrollY;
-  },
-  getBoundingClientRect() {
-    return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
-  },
-  pinType: scrollerEl.style.transform ? 'transform' : 'fixed'
-});
-
-// make ScrollTrigger use our scroller by default (so existing triggers work)
-ScrollTrigger.defaults({ scroller: scrollerEl });
-
-// keep ScrollTrigger updated on Lenis scroll events
-lenis.on && lenis.on('scroll', () => ScrollTrigger.update());
-
-// Single RAF loop driving Lenis + ScrollTrigger
 function raf(time) {
   lenis.raf(time);
-  ScrollTrigger.update();
   requestAnimationFrame(raf);
 }
 requestAnimationFrame(raf);
 
-// On load: sync Lenis to the browser's current scroll position and refresh triggers
-// window.addEventListener('load', () => {
-//   // small delay helps if large assets/fonts still settling
-//   setTimeout(() => {
-//     if (typeof lenis.scrollTo === 'function') lenis.scrollTo(window.scrollY, { immediate: true });
-//     ScrollTrigger.refresh(true);
-
-//     // initAny functions that rely on refreshed ScrollTrigger
-//     if (typeof initSection4HorizontalScroll === 'function') initSection4HorizontalScroll();
-//     if (typeof initPage4MaskAnimation === 'function') initPage4MaskAnimation();
-//   }, 120); // increase to 250-300ms if problem persists
-// });
-// // ...existing code...
-
-
+// Optionally, still sync Lenis with ScrollTrigger
+lenis.on('scroll', () => {
+  if (window.ScrollTrigger) {
+    ScrollTrigger.update();
+  }
+});
 
 // Wait for full page & all assets (images, video) to load, then start loader timeline animation
 window.addEventListener('load', function() {
   // At this point, all HTML, CSS, JS & media assets are loaded
   lodder.play(); // lodder is defined below, assumed to be initially paused
-  
-  // If the timeline isn't paused by default, consider: 
-  // If you want the animation to play only after load, define it as paused and then play here
-  // Example adjustment (uncomment and put in timeline definition if needed):
-  // var lodder = gsap.timeline({ paused: true });
+ 
 });
-//
-// (If your lodder timeline is NOT paused by default, you may want to set it to paused:true where it's created.)
-//
-
 
 
 
