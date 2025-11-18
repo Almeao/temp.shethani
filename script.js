@@ -45,94 +45,6 @@ var lodder = gsap.timeline();
 
 
 
-// const Loader = document.querySelector('.lodder span'); // ensure this selector matches your DOM
-// const counter = { val: 0 };
-
-// lodder.to(counter, {
-//     val: 100,
-    
-//     duration: 6,
-//     ease: "power4.out",
-//     onUpdate: () => {
-//         gsap.to(Loader, {
-//             stagger:0.6,
-//             // ease: "power4.out",
-            
-//             duration:4,
-//         });
-        
-//         if (Loader) Loader.innerHTML = Math.floor(counter.val) ;
-//         gsap.set(".lodder_progress", { width: counter.val + "%" });
-//     },
-   
-// },"lodder_progress"
-// );
-
-// lodder.to(".lodder_progress img", {
-//     opacity:0,
-//     duration:1,
-//     ease: "power2.inOut",
-// },"lodder_span_and_progress_image_hind"
-// )
-// lodder.to(".lodder span",{
-//     y:30,
-//     opacity:0,
-//     duration:1,
-//     ease: "power2.inOut",
-// },"lodder_span_and_progress_image_hind"
-// )
-
-
-
-
-
-
-// // Step 1: Animate background from white to transparent left to right
-// lodder.to(".lodder_progress", {
-//     background: "linear-gradient(to right, white 0%, transparent 100%)",
-//     duration: 0.5,
-//     ease: "power2.inOut",
-//     onStart: () => {
-//         // Ensure initial background is white
-//         gsap.set(".lodder_progress", { background: "white" });
-//     }
-// })
-
-// // Step 2: Animate background to solid white left to right
-// lodder.to(".lodder_progress", {
-//     background: "linear-gradient(to right, white 100%, white 100%)",
-//     duration: 0.5,
-//     ease: "power2.inOut",
-// })
-
-
-
-// // Step 3: Animate background from white to transparent left to right again
-// lodder.to(".lodder_progress", {
-//     background: "linear-gradient(to right, transparent 0%, white 100%)",
-//     duration: 1,
-//     opacity:0,
-//     x:"100%",
-//     ease: "power2.inOut",
-// },"lodder_logo&hr&progress_at sametime"
-// )
-
-
-
-
-
-
-
-
-
-// lodder.to(".lodder_logo", {
-//     y: "-450%",
-//     scale:0.5,
-//     duration: 1,
-//     ease: "power2.inOut",
-// },"lodder_logo&hr&progress_at sametime"
-// )
-
 
 
 
@@ -154,8 +66,8 @@ lodder.to(".lodder", {
 lodder.from(".nav_main_logo",{
     y:"-100%",
     scale:0.7,
-    duration:1,
-    ease: "power2.inOut",
+    duration:0.7,
+    // ease: "power2.inOut",
 })
 
 
@@ -167,7 +79,7 @@ lodder.from(".page1_bg_text",{
     opacity:0,
     scale:30,
  
-    duration:1,
+    duration:0.5,
     ease: "power2.inOut",
 
 }
@@ -178,21 +90,21 @@ lodder.from(".page1_bg_text",{
 
 lodder.to(".page1_bg_text",{
     lineHeight: "11vmax",
-    duration:1,
+    duration:0.5,
     scrub:5,
     ease: "elastic.out(1,1)",
 })
 
 lodder.from(".page1_containe_oil-img_left",{
     x:"-100%",
-    duration:2,
+    duration:1,
     ease: "power4.inOut",
 
 },"page1_contain"
 )
 lodder.from(".page1_containe_oil-img_right",{
     x:"100%",
-    duration:2,
+    duration:1,
     ease: "power4.inOut",
 
 },"page1_contain")
@@ -202,62 +114,63 @@ lodder.from(".page1_containe_oil-img_right",{
 
 lodder.from(".page1_contain_oil-img_container img",{
     rotate:"90deg",
-
     y:"-90%",
     x:200,
     scale:1.3,
-    duration:1.5,
+    duration:0.7,
     ease: "power2.inOut",
+    onComplete: function() {
 
-},"page1_contain")
+      
+      const container = document.querySelector(".page1_contain_oil-img_container");
+      const img = container ? container.querySelector("img") : null;
+      
+      // Only run animation if container and img exist
+      if (container && img) {
+          let isHovering = false;
+      
+          container.addEventListener("mouseenter", function(e) {
+              isHovering = true;
+              img.style.transition = "transform 0.5s cubic-bezier(.36,1.21,.58,.82)";
+              img.style.transform = "scale(1.05)";
+          });
+      
+          container.addEventListener("mousemove", function(e) {
+              if (!isHovering) return;
+      
+              const rect = container.getBoundingClientRect();
+              const centerX = rect.left + rect.width / 2;
+              const centerY = rect.top + rect.height / 2;
+      
+              let dx = e.clientX - centerX;
+              let dy = e.clientY - centerY;
+      
+              // Limit the movement to max 10px in any direction (circular boundary)
+              const maxMove = 10;
+              let dist = Math.sqrt(dx*dx + dy*dy);
+              if (dist > maxMove) {
+                  dx = dx * maxMove / dist;
+                  dy = dy * maxMove / dist;
+              }
+      
+              // Move the image with transform and scale it up to 1.7 on hover
+              img.style.transition = "transform 0.5s cubic-bezier(.36,1.21,.58,.82)";
+              img.style.transform = `translate(${dx}px, ${dy}px) scale(1.05)`;
+          });
+      
+          container.addEventListener("mouseleave", function() {
+              isHovering = false;
+              img.style.transition = "transform 0.5s cubic-bezier(.36,1.21,.58,.82)";
+              img.style.transform = "translate(0px, 0px) scale(1)";
+          });
+      }
+      
+
+    }  
+},"page1_contain")    
 
 
 // Make the image inside .page1_contain_oil-img_container follow the cursor with a max 20px offset from its center
-
-const container = document.querySelector(".page1_contain_oil-img_container");
-const img = container ? container.querySelector("img") : null;
-
-// Only run animation if container and img exist
-if (container && img) {
-    let isHovering = false;
-
-    container.addEventListener("mouseenter", function(e) {
-        isHovering = true;
-        img.style.transition = "transform 0.5s cubic-bezier(.36,1.21,.58,.82)";
-        img.style.transform = "scale(1.05)";
-    });
-
-    container.addEventListener("mousemove", function(e) {
-        if (!isHovering) return;
-
-        const rect = container.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-
-        let dx = e.clientX - centerX;
-        let dy = e.clientY - centerY;
-
-        // Limit the movement to max 10px in any direction (circular boundary)
-        const maxMove = 10;
-        let dist = Math.sqrt(dx*dx + dy*dy);
-        if (dist > maxMove) {
-            dx = dx * maxMove / dist;
-            dy = dy * maxMove / dist;
-        }
-
-        // Move the image with transform and scale it up to 1.7 on hover
-        img.style.transition = "transform 0.5s cubic-bezier(.36,1.21,.58,.82)";
-        img.style.transform = `translate(${dx}px, ${dy}px) scale(1.05)`;
-    });
-
-    container.addEventListener("mouseleave", function() {
-        isHovering = false;
-        img.style.transition = "transform 0.5s cubic-bezier(.36,1.21,.58,.82)";
-        img.style.transform = "translate(0px, 0px) scale(1)";
-    });
-}
-
-
 
 
 
@@ -1016,64 +929,6 @@ gsap.from(".page2_scroll_aniation_img2 img",{
 
 
 gsap.registerPlugin(ScrollTrigger);
-
-// function initHorizontalScroll() {
-//   const section = document.querySelector(".page3");
-//   const container = document.querySelector(".page3_contain");
-
-//   // Remove existing triggers for this section to ensure fresh setup
-//   ScrollTrigger.getAll().forEach(trigger => {
-//     if (trigger.trigger === section) trigger.kill();
-//   });
-//   gsap.set(container, { clearProps: "transform" });
-
-//   // Calculate horizontal scroll distance
-//   const totalScroll = container.scrollWidth - window.innerWidth;
-// //   const limitedScroll = totalScroll * 0.5;
-
-//   // Create fresh ScrollTrigger horizontal animation
-//   gsap.to(container, {
-//     x: () => -totalScroll,
-//     ease: "none",
-//     scrollTrigger: {
-//       trigger: section,
-//       start: "top top",
-//       end: () => "+=" + totalScroll,
-//       scrub: 0.1, // Changed from 1 to 0.1 for more reactive update (fixes slow scroll choppiness)
-//       pin: true,
-//       anticipatePin: 1,
-//       invalidateOnRefresh: true,
-//       fastScrollEnd: false, // Set to false to let GSAP track both fast and slow scrolls accurately
-//       preventOverlaps: true,
-//       // markers: true,
-//       onEnter: () => console.log("Entered horizontal scroll"),
-//       onLeave: () => console.log("Left horizontal scroll (stops at 50%)"),
-//       refreshPriority: 1
-//     }
-//   });
-
-//   // For improved smoothness: throttle ScrollTrigger.refresh() calls and force update on scroll as a backup
-//   ScrollTrigger.refresh();
-
-//   // Fix laggy animation if user scrolls extremely slowly:
-//   // Listen for scroll and update GSAP transform instantly if needed.
-//   let ticking = false;
-//   window.addEventListener("scroll", function() {
-//     if (!ticking) {
-//       window.requestAnimationFrame(function() {
-//         ScrollTrigger.update();
-//         ticking = false;
-//       });
-//       ticking = true;
-//     }
-//   });
-// }
-
-// window.addEventListener("load", () => {
-//   initHorizontalScroll();
-// });
-
-
 
 
 
