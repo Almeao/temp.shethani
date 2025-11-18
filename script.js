@@ -22,6 +22,16 @@ lenis.on('scroll', () => {
   }
 });
 
+
+
+
+var lodder = gsap.timeline();
+
+
+
+
+
+
 // Wait for full page & all assets (images, video) to load, then start loader timeline animation
 window.addEventListener('load', function() {
   // At this point, all HTML, CSS, JS & media assets are loaded
@@ -34,7 +44,7 @@ window.addEventListener('load', function() {
 
 
 
-var lodder = gsap.timeline();
+
 
 
 
