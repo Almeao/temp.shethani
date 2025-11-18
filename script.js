@@ -1,35 +1,20 @@
 gsap.registerPlugin(ScrollTrigger);
 
 
-// Initialize Lenis for smooth scrolling
-const lenis = new Lenis({
-  lerp: 0, // Adjust for smoothness (0.04 - 0.2 is typical)
-  smooth: true,
-  easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
-  wheelMultiplier: 1.5,
-  direction: 'vertical',
-  gestureDirection: 'vertical',
-  mouseMultiplier: 1,
-  touchMultiplier: 2,
-  infinite: false,
-});
+// Initialize a new Lenis instance for smooth scrolling
+const lenis = new Lenis();
 
-// Animation frame loop for Lenis + GSAP ScrollTrigger
-function raf(time) {
-  lenis.raf(time);
-  ScrollTrigger.update();
-  requestAnimationFrame(raf);
-}
-requestAnimationFrame(raf);
-
-// Optional: update ScrollTrigger on Lenis scroll
+// Synchronize Lenis scrolling with GSAP's ScrollTrigger plugin
 lenis.on('scroll', ScrollTrigger.update);
 
+// Add Lenis's requestAnimationFrame (raf) method to GSAP's ticker
+// This ensures Lenis's smooth scroll animation updates on each GSAP tick
+gsap.ticker.add((time) => {
+  lenis.raf(time * 1000); // Convert time from seconds to milliseconds
+});
 
-
-
-
-
+// Disable lag smoothing in GSAP to prevent any delay in scroll animations
+gsap.ticker.lagSmoothing(0);
 
 
 
@@ -989,17 +974,52 @@ gsap.from(".product_detail_right h3",{
     scrub:5,
   }
 })
+
+gsap.from(".product_detail_right h4",{
+  // y: "20",
+  opacity:0,
+  stagger:0.2,
+  scrollTrigger:{
+    trigger:".product_detail_right",
+    start:"top 50%",
+    end:"top 30%",
+    scrub:5,
+  }
+})
 gsap.from(".product_detail_right_inner p",{
   x: "200",
   opacity:0,
   stagger:0.2,
-
   scrollTrigger:{
     trigger:".product_detail_right",
     start:"top 60%",
     end:"top 50%",
     ease: "circ.out",
-    scrub:3,
+    scrub:2,
+    onLeave: function(self) {
+      // Smoothly transition the border appearance using GSAP
+      const parentBox = document.querySelector('.product_detail_right_inner');
+      if(parentBox) {
+        gsap.to(parentBox, {
+          borderWidth: 3,
+          borderColor: "#F8981C",
+          borderStyle: "solid",
+          duration: 1,
+          overwrite: "auto"
+        });
+      }
+    },
+    onEnterBack: function(self) {
+      // Smoothly transition the border removal using GSAP
+      const parentBox = document.querySelector('.product_detail_right_inner');
+      if(parentBox) {
+        gsap.to(parentBox, {
+          borderWidth: 0,
+          duration: 1,
+          overwrite: "auto"
+        });
+      }
+    }
   }
 })
 
@@ -1107,22 +1127,6 @@ window.addEventListener('load', () => {
 
 
 
-// document.querySelectorAll('.page5 h3').forEach(function(h3) {
-//     // Get the text content and trim it
-//     var text = h3.textContent;
-//     // Create a new HTML string with each character wrapped in a span
-//     var spanned = '';
-//     for (var i = 0; i < text.length; i++) {
-//         // Preserve spaces
-//         if (text[i] === ' ') {
-//             spanned += '<span>&nbsp;</span>';
-//         } else {
-//             spanned += '<span class:"page2_heading_divide">' + text[i] + '</span>';
-//         }
-//     }
-//     // Set the new HTML
-//     h3.innerHTML = spanned;
-// });
 
 
 gsap.from(".page5 h3",
@@ -1144,87 +1148,6 @@ gsap.from(".page5 h3",
       
 })
  
-
-// gsap.from(".page5_box1",
-//     {
-//         opacity: 0,
-//         y: 300,
-//         // x:20,
-//         stagger: 0.2,
-//         // scale:0,
-//         // duration: 50,
-//         ease: "power4.out",
-//         scrollTrigger: {
-//             trigger: ".page5_contain",
-//             start: "top 60%",
-//             end:"top 50%",
-//             scrub: 3,
-//             // markers: true, // Uncomment for debugging
-
-//         }
-    
-        
-// })
-
-// Move the Swiper pagination below the swiper wrapper after initialization
-// var swiper = new Swiper(".mySwiper", {
-//   effect: "coverflow",
-//   grabCursor: true,
-//   centeredSlides: true,
-//   slidesPerView: "auto",
-//   loop: true,
-//   autoplay: {
-//     delay: 2500, // slightly longer for a more relaxed experience
-//     disableOnInteraction: false,
-//   },
-//   speed: 1400, // slow down transition for smoothness
-//   coverflowEffect: {
-//     rotate: 0,
-//     stretch: 50,
-//     depth: 300,
-//     modifier: 1,
-//     slideShadows: true,
-//   },
-//   pagination: {
-//     el: ".swiper-pagination",
-//     dynamicBullets: true,
-//   },
-//   navigation: {
-//     nextEl: ".swiper-button-next",
-//     prevEl: ".swiper-button-prev",
-//   },
-//   // Enforce a very smooth easing to Swiper slides
-//   on: {
-//     setTransition: function(swiper, transition) {
-//       let slides = swiper.slides;
-//       for (let i = 0; i < slides.length; i++) {
-//         slides[i].style.transitionTimingFunction = 'cubic-bezier(0.22, 1, 0.36, 1)'; // very soft easeOut
-//       }
-//     }
-//   }
-// });
-
-// // After Swiper initializes, move the pagination below the swiper wrapper
-// document.addEventListener("DOMContentLoaded", function() {
-//   var swiperWrapper = document.querySelector('.mySwiper');
-//   var swiperPagination = document.querySelector('.swiper-pagination');
-//   if (swiperWrapper && swiperPagination) {
-//     swiperWrapper.parentNode.insertBefore(swiperPagination, swiperWrapper.nextSibling);
-//   }
-// });
-// // Fix GSAP mask animation: slow down mask reveal & ensure smooth scroll animation
-// // Re-initialize the animation after DOMContentLoaded to ensure ScrollTrigger works as intended
-
-// document.addEventListener("DOMContentLoaded", function() {
-//   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-//     // Remove previous ScrollTriggers for .page4 to avoid stacking on refresh
-//     ScrollTrigger.getAll().forEach(trigger => {
-//       if (trigger.trigger && trigger.trigger.classList && trigger.trigger.classList.contains('page4')) trigger.kill();
-//     });
-//     initPage4MaskAnimation();
-//   }
-// });
-
 
 
 

@@ -2482,8 +2482,8 @@ body::-webkit-scrollbar {
     .panel_right_detail_mobail {
         /* background-color: #8d2121; */
         /* width: 70vw !important; */
-        min-width: 76vw;
-        max-width: none !important;
+        min-width: 25vmax;
+        /* max-width: none !important; */
         /* box-sizing: border-box; */
         text-align: justify;
         /* height: 50%; */
