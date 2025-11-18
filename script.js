@@ -1,21 +1,65 @@
+// ...existing code...
+// --- Stable Lenis + ScrollTrigger integration (replace previous Lenis/raf code) ---
 gsap.registerPlugin(ScrollTrigger);
 
-
-// Initialize a new Lenis instance for smooth scrolling
-const lenis = new Lenis();
-
-// Synchronize Lenis scrolling with GSAP's ScrollTrigger plugin
-lenis.on('scroll', ScrollTrigger.update);
-
-// Add Lenis's requestAnimationFrame (raf) method to GSAP's ticker
-// This ensures Lenis's smooth scroll animation updates on each GSAP tick
-gsap.ticker.add((time) => {
-  lenis.raf(time * 1000); // Convert time from seconds to milliseconds
+// create Lenis once
+const lenis = new Lenis({
+  lerp: 0.08,
+  smooth: true,
+  wheelMultiplier: 1.2,
+  direction: 'vertical',
+  gestureDirection: 'vertical',
+  infinite: false,
 });
 
-// Disable lag smoothing in GSAP to prevent any delay in scroll animations
-gsap.ticker.lagSmoothing(0);
+// use the browser scrollingElement (fallback to documentElement)
+const scrollerEl = document.scrollingElement || document.documentElement;
 
+// Proxy ScrollTrigger to Lenis-driven scroller
+ScrollTrigger.scrollerProxy(scrollerEl, {
+  scrollTop(value) {
+    if (arguments.length) {
+      // immediate jump so ScrollTrigger stays in sync
+      if (typeof lenis.scrollTo === 'function') lenis.scrollTo(value, { immediate: true });
+      else window.scrollTo(0, value);
+      return;
+    }
+    // prefer Lenis virtual value when present
+    return (lenis && lenis.scroll && typeof lenis.scroll.y === 'number') ? lenis.scroll.y : window.scrollY;
+  },
+  getBoundingClientRect() {
+    return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+  },
+  pinType: scrollerEl.style.transform ? 'transform' : 'fixed'
+});
+
+// make ScrollTrigger use our scroller by default (so existing triggers work)
+ScrollTrigger.defaults({ scroller: scrollerEl });
+
+// keep ScrollTrigger updated on Lenis scroll events
+lenis.on && lenis.on('scroll', () => ScrollTrigger.update());
+
+// Single RAF loop driving Lenis + ScrollTrigger
+function raf(time) {
+  lenis.raf(time);
+  ScrollTrigger.update();
+  requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+
+// On load: sync Lenis to the browser's current scroll position and refresh triggers
+// window.addEventListener('load', () => {
+//   // small delay helps if large assets/fonts still settling
+//   setTimeout(() => {
+//     if (typeof lenis.scrollTo === 'function') lenis.scrollTo(window.scrollY, { immediate: true });
+//     ScrollTrigger.refresh(true);
+
+//     // initAny functions that rely on refreshed ScrollTrigger
+//     if (typeof initSection4HorizontalScroll === 'function') initSection4HorizontalScroll();
+//     if (typeof initPage4MaskAnimation === 'function') initPage4MaskAnimation();
+//   }, 120); // increase to 250-300ms if problem persists
+// });
+// // ...existing code...
 
 
 
