@@ -525,7 +525,7 @@ window.addEventListener('scroll', function() {
 const page1_imagescroller = gsap.timeline({
     scrollTrigger: {
         trigger: ".page1_contain_oil-img_container",
-        scroller: "body",
+        // scroller: "body",
         start: "top -20%",
         end: "top -140%",
         scrub: 0,
@@ -548,7 +548,7 @@ page1_imagescroller.to(".page1_contain_oil-img_container",
     stagger: 0.2,
     rotate: "10deg",
     scale:1.3,
-    pin:true,
+    // pin:true,
    
 });
 
@@ -614,7 +614,7 @@ gsap.from(".page1_contain_2_right h3", {
 const page1_imagescroller_mobail = gsap.timeline({
   scrollTrigger: {
       trigger: ".page1_contain_oil-img_container_mobail",
-      scroller: "body",
+      // scroller: "body",
       start: "top -30%",
       end: "top -100%",
       scrub: 0,
@@ -638,7 +638,7 @@ page1_imagescroller_mobail.to(".page1_contain_oil-img_container_mobail",
   stagger: 0.2,
   rotate: "10deg",
   scale:3.5,
-  pin:true,
+  // pin:true,
  
 });
 
