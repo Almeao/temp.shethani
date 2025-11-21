@@ -617,54 +617,35 @@ window.addEventListener('scroll', function() {
 
 
 
-
-// Use ScrollTrigger.matchMedia to apply different animation for screens up to 1900px wide
-
-ScrollTrigger.matchMedia({
-  // Default (all screens unless overwritten)
-  "all": function() {
-    // Optionally, you may want to unset this or keep, but we'll set default for wider screens
-    const page1_imagescroller = gsap.timeline({
-      scrollTrigger: {
+const page1_imagescroller = gsap.timeline({
+    scrollTrigger: {
         trigger: ".page1_contain_oil-img_container",
+        // scroller: "body",
         start: "top -20%",
         end: "top -140%",
         scrub: 0,
         // markers:true,
-      }
-    });
 
-    page1_imagescroller.to(".page1_contain_oil-img_container", {
-      y: "160%",
-      x: "-75%",
-      stagger: 0.2,
-      rotate: "15deg",
-      scale:1.3,
-      // pin:true,
-    });
-  },
+    }
+})
 
-  // For screens up to 1900px wide
-  "(min-width: 1900px)": function() {
-    // Adjust values as needed for smaller screens or keep same if logic is equal.
-    const page1_imagescroller_1900 = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".page1_contain_oil-img_container",
-        start: "top -20%",
-        end: "top -140%",
-        scrub: 0
-      }
-    });
 
-    page1_imagescroller_1900.to(".page1_contain_oil-img_container", {
-      y: "130%",
-      x: "-75%",
-      stagger: 0.2,
-      rotate: "15deg",
-      scale:1.3
-      // Adjust or keep same as above.
-    });
-  }
+
+
+
+
+
+page1_imagescroller.to(".page1_contain_oil-img_container", 
+
+    {
+
+    y: "70vmax",
+    x: "-75%",
+    stagger: 0.2,
+    rotate: "15deg",
+    scale:1.3,
+    // pin:true,
+   
 });
 
 
