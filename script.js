@@ -622,7 +622,7 @@ const page1_imagescroller = gsap.timeline({
         trigger: ".page1_contain_oil-img_container",
         // scroller: "body",
         start: "top -20%",
-        end: "top -140%",
+        end: "top -120%",
         scrub: 0,
         // markers:true,
 
@@ -639,7 +639,7 @@ page1_imagescroller.to(".page1_contain_oil-img_container",
 
     {
 
-    y: "70vmax",
+    y: "60vmax",
     x: "-75%",
     stagger: 0.2,
     rotate: "15deg",

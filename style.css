@@ -204,7 +204,7 @@ body::-webkit-scrollbar {
 
 .page1 {
     width: 100vw;
-    height: 130vmax;
+    height: 120vmax;
     /* height: 250vh; */
     /* max-height: 280vh; */
     position: relative;
@@ -379,7 +379,7 @@ body::-webkit-scrollbar {
 .page1_contain_2 {
     width: 100vw;
     height: 80vh;
-    margin-top: 15%;
+    margin-top: 5%;
     /* background-color: rgba(216, 191, 216, 0.3); */
     position: relative;
     display: flex;
