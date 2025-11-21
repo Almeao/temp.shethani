@@ -619,12 +619,14 @@ window.addEventListener('scroll', function() {
 
 let page1_scroll_start = "top -20%";
 let page1_scroll_end = "top -120%";
+let page1_scroll_from_y = "108vh";
 
 // If the screen width is greater than 1900px, increase the scroll distance (end further away) to decrease scroll speed
 if (window.innerWidth > 1900) {
     // This makes the scroll animation span a longer distance (slower effect)
     page1_scroll_start = "top -20%";
-    page1_scroll_end = "top -160%";
+    page1_scroll_end = "top -120%";
+    page1_scroll_from_y = "115vh";
 }
 
 const page1_imagescroller = gsap.timeline({
@@ -639,11 +641,11 @@ const page1_imagescroller = gsap.timeline({
 
 page1_imagescroller.to(".page1_contain_oil-img_container", 
     {
-        y: "60vmax",
-        x: "-75%",
+        y: page1_scroll_from_y ,
+        x: "-72%",
         stagger: 0.2,
         rotate: "15deg",
-        scale: 1.3,
+        scale: 1,
         // No pin or duration required.
     }
 );
@@ -652,12 +654,12 @@ page1_imagescroller.to(".page1_contain_oil-img_container",
 
 gsap.from(".page1_contain_2_left_img_oil", {
     scale: 0,
-    duration: 10,
+    duration: 1,
     ease: "none",
     scrollTrigger: {
         trigger: ".page1_contain_2",
-        start: "top 30%",
-        end: "top 25%",
+        start: "top 25%",
+        end: "top 22%",
         // markers: true,
         // pin:true,
         scrub: 3, // This makes the animation reverse on scroll up
@@ -671,8 +673,8 @@ gsap.from(".page1_contain_2_left_img_pinuts", {
     delay:1,
     scrollTrigger: {
         trigger: ".page1_contain_2",
-        start: "top 35%",
-        end: "top 30%",
+        start: "top 30%",
+        end: "top 27%",
         // markers: true,
         scrub: 3, // This makes the animation reverse on scroll up
     }
@@ -730,10 +732,10 @@ page1_imagescroller_leptop.to(".page1_contain_oil-img_container_leptop",
   {
 
    y: "130%",
-    x: "-75%",
+    x: "-70%",
     stagger: 0.2,
     rotate: "15deg",
-    scale:1.3,
+    scale:1.1,
  
 });
 
