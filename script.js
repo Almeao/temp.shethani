@@ -617,37 +617,36 @@ window.addEventListener('scroll', function() {
 
 
 
+let page1_scroll_start = "top -20%";
+let page1_scroll_end = "top -120%";
+
+// If the screen width is greater than 1900px, increase the scroll distance (end further away) to decrease scroll speed
+if (window.innerWidth > 1900) {
+    // This makes the scroll animation span a longer distance (slower effect)
+    page1_scroll_start = "top -20%";
+    page1_scroll_end = "top -160%";
+}
+
 const page1_imagescroller = gsap.timeline({
     scrollTrigger: {
         trigger: ".page1_contain_oil-img_container",
-        // scroller: "body",
-        start: "top -20%",
-        end: "top -120%",
+        start: page1_scroll_start,
+        end: page1_scroll_end,
         scrub: 0,
         // markers:true,
-
     }
 })
 
-
-
-
-
-
-
 page1_imagescroller.to(".page1_contain_oil-img_container", 
-
     {
-
-    y: "60vmax",
-    x: "-75%",
-    stagger: 0.2,
-    rotate: "15deg",
-    scale:1.3,
-    // pin:true,
-   
-});
-
+        y: "60vmax",
+        x: "-75%",
+        stagger: 0.2,
+        rotate: "15deg",
+        scale: 1.3,
+        // No pin or duration required.
+    }
+);
 
 
 
