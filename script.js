@@ -92,7 +92,7 @@ lodder.from(".page1_bg_text",{
 
 
 lodder.to(".page1_bg_text",{
-    lineHeight: "11vmax",
+    lineHeight: "10vmax",
     duration:0.5,
     scrub:5,
     ease: "elastic.out(1,1)",
@@ -622,7 +622,7 @@ let page1_scroll_end = "top -120%";
 let page1_scroll_from_y = "108vh";
 
 // If the screen width is greater than 1900px, increase the scroll distance (end further away) to decrease scroll speed
-if (window.innerWidth > 1900) {
+if (window.innerWidth >= 1900) {
     // This makes the scroll animation span a longer distance (slower effect)
     page1_scroll_start = "top -20%";
     page1_scroll_end = "top -120%";
