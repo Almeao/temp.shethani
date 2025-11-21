@@ -805,9 +805,9 @@ page1_imagescroller_mobail.to(".page1_contain_oil-img_container_mobail",
   {
 
   y: "90vh",
-  x: "10%",
+  x: "12%",
   stagger: 0.2,
-  rotate: "10deg",
+  rotate: "17deg",
   scale:3.5,
   // pin:true,
  
