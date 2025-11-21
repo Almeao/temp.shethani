@@ -1172,8 +1172,11 @@ body::-webkit-scrollbar {
 
 
 
-
-
+/* 
+.page4_mobail
+{
+    display: none;
+} */
 
 
 
@@ -3132,6 +3135,56 @@ body::-webkit-scrollbar {
         font-family: 'font-1-light';
 
     }
+
+
+
+
+
+    .page4_inner {
+    width: 100vw;
+    height: auto;
+}
+
+
+.page4_inner {
+    width: 100vw;
+    height: 100vh;
+    /* background-color: aquamarine; */
+    background-image: url(family_img_mobail.png);
+    background-size: contain;
+    
+    background-position: right;
+    /* background: transparent; */
+    /* opacity: 0.8; */
+    background-repeat: no-repeat;
+    position: relative;
+
+    mask-image: url('SHETHANI-UPDATED-JAR-TRANSPARENT 5.png');
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center center;
+    mask-position: center center;
+    -webkit-mask-size: auto 460px;
+    /* initial bottle height */
+    mask-size: auto 460px;
+    -webkit-mask-origin: content-box;
+    mask-origin: content-box;
+    z-index: 200;
+    /* background-color: #000000; */
+    /* background-color: #fff; */
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
