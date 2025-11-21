@@ -626,7 +626,7 @@ if (window.innerWidth > 1900) {
     // This makes the scroll animation span a longer distance (slower effect)
     page1_scroll_start = "top -20%";
     page1_scroll_end = "top -120%";
-    page1_scroll_from_y = "115vh";
+    page1_scroll_from_y = "120vh";
 }
 
 const page1_imagescroller = gsap.timeline({
