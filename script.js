@@ -85,7 +85,7 @@ lodder.from(".page1_bg_text",{
     duration:0.5,
     ease: "power2.inOut",
 
-}
+},"page1_bgtext_time match"
 )
 
 
@@ -96,7 +96,8 @@ lodder.to(".page1_bg_text",{
     duration:0.5,
     scrub:5,
     ease: "elastic.out(1,1)",
-})
+},"page1_bgtext_linehight_time match"
+)
 
 lodder.from(".page1_containe_oil-img_left",{
     x:"-100%",
@@ -171,6 +172,139 @@ lodder.from(".page1_contain_oil-img_container img",{
 
     }  
 },"page1_contain")    
+
+
+
+
+
+//==========================================================
+//=========== page1 leptop 1440 to 1700 ====================
+//==========================================================
+
+
+
+
+lodder.from(".page1_bg_text_leptop",{
+    opacity:0,
+    scale:30,
+ 
+    duration:0.5,
+    ease: "power2.inOut",
+
+}
+,"page1_bgtext_time match"
+)
+
+
+
+
+lodder.to(".page1_bg_text_leptop",{
+    lineHeight: "11vmax",
+    duration:0.5,
+    scrub:5,
+    ease: "elastic.out(1,1)",
+
+},"page1_bgtext_linehight_time match")
+
+lodder.from(".page1_containe_oil-img_left_leptop",{
+    x:"-100%",
+    duration:1,
+    ease: "power4.inOut",
+
+},"page1_contain"
+)
+lodder.from(".page1_containe_oil-img_right_leptop",{
+    x:"100%",
+    duration:1,
+    ease: "power4.inOut",
+
+},"page1_contain")
+
+
+
+
+lodder.from(".page1_contain_oil-img_container_leptop img",{
+    rotate:"90deg",
+    y:"-90%",
+    x:200,
+    scale:1.3,
+    duration:0.7,
+    ease: "power2.inOut",
+    onComplete: function() {
+
+      
+      const container = document.querySelector(".page1_contain_oil-img_container_leptop");
+      const img = container ? container.querySelector("img") : null;
+      
+      // Only run animation if container and img exist
+      if (container && img) {
+          let isHovering = false;
+      
+          container.addEventListener("mouseenter", function(e) {
+              isHovering = true;
+              img.style.transition = "transform 0.5s cubic-bezier(.36,1.21,.58,.82)";
+              img.style.transform = "scale(1.05)";
+          });
+      
+          container.addEventListener("mousemove", function(e) {
+              if (!isHovering) return;
+      
+              const rect = container.getBoundingClientRect();
+              const centerX = rect.left + rect.width / 2;
+              const centerY = rect.top + rect.height / 2;
+      
+              let dx = e.clientX - centerX;
+              let dy = e.clientY - centerY;
+      
+              // Limit the movement to max 10px in any direction (circular boundary)
+              const maxMove = 10;
+              let dist = Math.sqrt(dx*dx + dy*dy);
+              if (dist > maxMove) {
+                  dx = dx * maxMove / dist;
+                  dy = dy * maxMove / dist;
+              }
+      
+              // Move the image with transform and scale it up to 1.7 on hover
+              img.style.transition = "transform 0.5s cubic-bezier(.36,1.21,.58,.82)";
+              img.style.transform = `translate(${dx}px, ${dy}px) scale(1.05)`;
+          });
+      
+          container.addEventListener("mouseleave", function() {
+              isHovering = false;
+              img.style.transition = "transform 0.5s cubic-bezier(.36,1.21,.58,.82)";
+              img.style.transform = "translate(0px, 0px) scale(1)";
+          });
+      }
+      
+
+    }  
+},"page1_contain")  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Make the image inside .page1_contain_oil-img_container follow the cursor with a max 20px offset from its center
@@ -490,6 +624,7 @@ const page1_imagescroller = gsap.timeline({
         start: "top -20%",
         end: "top -140%",
         scrub: 0,
+        // markers:true,
 
     }
 })
@@ -507,7 +642,7 @@ page1_imagescroller.to(".page1_contain_oil-img_container",
     y: "160%",
     x: "-75%",
     stagger: 0.2,
-    rotate: "10deg",
+    rotate: "15deg",
     scale:1.3,
     // pin:true,
    
@@ -569,6 +704,80 @@ gsap.from(".page1_contain_2_right h3", {
 
 
 
+
+//===========================================================
+//============= page1 image scroller fro leptop =============
+//===========================================================
+const page1_imagescroller_leptop = gsap.timeline({
+  scrollTrigger: {
+      trigger: ".page1_contain_oil-img_container_leptop",
+      // scroller: "body",
+      start: "top -30%",
+      end: "top -100%",
+      scrub: 0,
+      // markers:true,
+
+  }
+})
+
+
+
+
+
+
+
+page1_imagescroller_leptop.to(".page1_contain_oil-img_container_leptop", 
+
+  {
+
+   y: "130%",
+    x: "-75%",
+    stagger: 0.2,
+    rotate: "15deg",
+    scale:1.3,
+ 
+});
+
+
+
+
+
+
+gsap.from(".page1_contain_2_left_img_oil_leptop", {
+    scale: 0,
+    duration: 10,
+    ease: "none",
+    scrollTrigger: {
+        trigger: ".page1_contain_2_leptop",
+        start: "top 30%",
+        end: "top 25%",
+        // markers: true,
+        // pin:true,
+        scrub: 3, // This makes the animation reverse on scroll up
+    }
+});
+
+gsap.from(".page1_contain_2_left_img_pinuts_leptop", {
+    scale: 0,
+    duration: 10,
+    ease: "none",
+    delay:1,
+    scrollTrigger: {
+        trigger: ".page1_contain_2_leptop",
+        start: "top 35%",
+        end: "top 30%",
+        // markers: true,
+        scrub: 3, // This makes the animation reverse on scroll up
+    }
+});
+
+
+//===========================================================
+
+
+
+
+
 //===========================================================
 //============= page1 image scroller fro mobail =============
 //===========================================================
@@ -602,6 +811,22 @@ page1_imagescroller_mobail.to(".page1_contain_oil-img_container_mobail",
   // pin:true,
  
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
