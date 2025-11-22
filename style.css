@@ -506,7 +506,7 @@ body::-webkit-scrollbar {
 .page2 {
     position: relative;
     width: 100vw;
-    height: 170vh;
+    height: 150vh;
     /* margin-top: 15%; */
     /* background-color: aquamarine; */
     display: flex;
@@ -707,7 +707,7 @@ body::-webkit-scrollbar {
     white-space: nowrap;
     will-change: transform;
     /* Reduce flicker by making animation seamless (slightly overlaps slide-out and slide-in) */
-    animation: ticker-move-seamless 20s linear infinite;
+    animation: ticker-move-seamless 40s linear infinite;
     /* Sometimes hardware acceleration helps on certain browsers */
     backface-visibility: hidden;
 }
@@ -839,8 +839,8 @@ body::-webkit-scrollbar {
 }
 
 .panel2_left img {
-    width: 24%;
-    height: 45%;
+    width: 20%;
+    height: 40%;
     position: relative;
     margin-right: 20%;
 }
@@ -914,7 +914,7 @@ body::-webkit-scrollbar {
 
 .panel3_left img {
     width: auto;
-    height: 58%;
+    height: 48%;
     position: relative;
     margin-right: 13%;
 }
@@ -966,7 +966,7 @@ body::-webkit-scrollbar {
 
 
 .panel4_left {
-    width: 50vw;
+    width: 40vw;
     height: 100vh;
     /* background-color: aquamarine; */
     display: flex;
@@ -977,10 +977,10 @@ body::-webkit-scrollbar {
 
 .panel4_left img {
     width: auto;
-    height: 70%;
+    height: 50%;
     position: relative;
     margin-right: 15%;
-    margin-bottom: 11%;
+    margin-bottom: 0%;
 }
 
 
